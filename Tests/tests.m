@@ -1,0 +1,2 @@
+runtests('testSumatorias');
+runtests('testSumatoriasLn');
