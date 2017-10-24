@@ -23,13 +23,13 @@ for i=1:n
 end 
 
 %Extremos a considerar para el gráfico
-e1=min(X(1,:))-2
-e2=max(X(1,:))+2
-e3=min(X(2,:))-2
-e4=max(X(2,:))+2
+e1=min(X(1,:))-2;
+e2=max(X(1,:))+2;
+e3=min(X(2,:))-2;
+e4=max(X(2,:))+2;
 
 %Grafico de la hipérbola obtenida
-fplot(@(x)(b/x)+a,'b')
+fplot(@(x)(b./x)+a,'b')
 xlim([e1 e2]);
 ylim([e3 e4]);
 title('Aproximación hiperbólica por mínimos cuadrados');
