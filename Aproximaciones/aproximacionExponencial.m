@@ -24,11 +24,15 @@ for i=1:n;
 end
 
 %Extremos a considerar para el gráfico
-e1=-X(1,1);
-e2=X(1,n);
+e1=min(X(1,:))-2
+e2=max(X(1,:))+2
+e3=min(X(2,:))-2
+e4=max(X(2,:))+2
 
-%Grafico de la recta obtenida
-fplot(@(x) b*exp(a*x),[e1 e2],'b')
+%Grafico de la exponencial obtenida
+fplot(@(x) b*exp(a*x),'b')
+xlim([e1 e2]);
+ylim([e3 e4]);
 title('Aproximación exponencial por mínimos cuadrados');
 
 end
