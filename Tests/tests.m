@@ -1,2 +1,3 @@
-runtests('testSumatorias');
-runtests('testSumatoriasLn');
+runtests('testAproximaciones.m');
+
+testGraficos;
