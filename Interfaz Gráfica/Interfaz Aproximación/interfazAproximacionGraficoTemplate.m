@@ -1,19 +1,19 @@
 function varargout = interfazAproximacionGraficoTemplate(varargin)
-% INTERFAZAPROXIMACIONGRAFICOTEMPLATE MATLAB code for interfazAproximacionGraficoTemplate.fig
+%INTERFAZAPROXIMACIONGRAFICOTEMPLATE MATLAB code file for interfazAproximacionGraficoTemplate.fig
 %      INTERFAZAPROXIMACIONGRAFICOTEMPLATE, by itself, creates a new INTERFAZAPROXIMACIONGRAFICOTEMPLATE or raises the existing
 %      singleton*.
 %
 %      H = INTERFAZAPROXIMACIONGRAFICOTEMPLATE returns the handle to a new INTERFAZAPROXIMACIONGRAFICOTEMPLATE or the handle to
 %      the existing singleton*.
 %
-%      INTERFAZAPROXIMACIONGRAFICOTEMPLATE('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in INTERFAZAPROXIMACIONGRAFICOTEMPLATE.M with the given input arguments.
+%      INTERFAZAPROXIMACIONGRAFICOTEMPLATE('Property','Value',...) creates a new INTERFAZAPROXIMACIONGRAFICOTEMPLATE using the
+%      given property value pairs. Unrecognized properties are passed via
+%      varargin to interfazAproximacionGraficoTemplate_OpeningFcn.  This calling syntax produces a
+%      warning when there is an existing singleton*.
 %
-%      INTERFAZAPROXIMACIONGRAFICOTEMPLATE('Property','Value',...) creates a new INTERFAZAPROXIMACIONGRAFICOTEMPLATE or raises the
-%      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before interfazAproximacionGraficoTemplate_OpeningFcn gets called.  An
-%      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to interfazAproximacionGraficoTemplate_OpeningFcn via varargin.
+%      INTERFAZAPROXIMACIONGRAFICOTEMPLATE('CALLBACK') and INTERFAZAPROXIMACIONGRAFICOTEMPLATE('CALLBACK',hObject,...) call the
+%      local function named CALLBACK in INTERFAZAPROXIMACIONGRAFICOTEMPLATE.M with the given input
+%      arguments.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
@@ -22,7 +22,7 @@ function varargout = interfazAproximacionGraficoTemplate(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionGraficoTemplate
 
-% Last Modified by GUIDE v2.5 25-Oct-2017 19:06:19
+% Last Modified by GUIDE v2.5 26-Oct-2017 00:41:58
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -30,10 +30,10 @@ gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
                    'gui_OpeningFcn', @interfazAproximacionGraficoTemplate_OpeningFcn, ...
                    'gui_OutputFcn',  @interfazAproximacionGraficoTemplate_OutputFcn, ...
-                   'gui_LayoutFcn',  [] , ...
+                   'gui_LayoutFcn',  [], ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
-    gui_State.gui_Callback = str2func(varargin{1});
+   gui_State.gui_Callback = str2func(varargin{1});
 end
 
 if nargout
@@ -50,7 +50,8 @@ function interfazAproximacionGraficoTemplate_OpeningFcn(hObject, eventdata, hand
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to interfazAproximacionGraficoTemplate (see VARARGIN)
+% varargin   unrecognized PropertyName/PropertyValue pairs from the
+%            command line (see VARARGIN)
 
 % Choose default command line output for interfazAproximacionGraficoTemplate
 handles.output = hObject;
@@ -63,7 +64,7 @@ guidata(hObject, handles);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = interfazAproximacionGraficoTemplate_OutputFcn(hObject, eventdata, handles) 
+function varargout = interfazAproximacionGraficoTemplate_OutputFcn(hObject, eventdata, handles)
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB

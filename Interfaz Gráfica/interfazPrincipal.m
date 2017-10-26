@@ -22,7 +22,7 @@ function varargout = interfazPrincipal(varargin)
 
 % Edit the above text to modify the response to help interfazPrincipal
 
-% Last Modified by GUIDE v2.5 24-Oct-2017 22:27:08
+% Last Modified by GUIDE v2.5 25-Oct-2017 20:50:05
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;

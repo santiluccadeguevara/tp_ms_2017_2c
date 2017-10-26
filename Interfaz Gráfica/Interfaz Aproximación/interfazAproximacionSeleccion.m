@@ -1,19 +1,19 @@
 function varargout = interfazAproximacionSeleccion(varargin)
-% INTERFAZAPROXIMACIONSELECCION MATLAB code for interfazAproximacionSeleccion.fig
+%INTERFAZAPROXIMACIONSELECCION MATLAB code file for interfazAproximacionSeleccion.fig
 %      INTERFAZAPROXIMACIONSELECCION, by itself, creates a new INTERFAZAPROXIMACIONSELECCION or raises the existing
 %      singleton*.
 %
 %      H = INTERFAZAPROXIMACIONSELECCION returns the handle to a new INTERFAZAPROXIMACIONSELECCION or the handle to
 %      the existing singleton*.
 %
-%      INTERFAZAPROXIMACIONSELECCION('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in INTERFAZAPROXIMACIONSELECCION.M with the given input arguments.
+%      INTERFAZAPROXIMACIONSELECCION('Property','Value',...) creates a new INTERFAZAPROXIMACIONSELECCION using the
+%      given property value pairs. Unrecognized properties are passed via
+%      varargin to interfazAproximacionSeleccion_OpeningFcn.  This calling syntax produces a
+%      warning when there is an existing singleton*.
 %
-%      INTERFAZAPROXIMACIONSELECCION('Property','Value',...) creates a new INTERFAZAPROXIMACIONSELECCION or raises the
-%      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before interfazAproximacionSeleccion_OpeningFcn gets called.  An
-%      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to interfazAproximacionSeleccion_OpeningFcn via varargin.
+%      INTERFAZAPROXIMACIONSELECCION('CALLBACK') and INTERFAZAPROXIMACIONSELECCION('CALLBACK',hObject,...) call the
+%      local function named CALLBACK in INTERFAZAPROXIMACIONSELECCION.M with the given input
+%      arguments.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
@@ -22,7 +22,7 @@ function varargout = interfazAproximacionSeleccion(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionSeleccion
 
-% Last Modified by GUIDE v2.5 25-Oct-2017 19:51:10
+% Last Modified by GUIDE v2.5 26-Oct-2017 00:40:10
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -30,10 +30,10 @@ gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
                    'gui_OpeningFcn', @interfazAproximacionSeleccion_OpeningFcn, ...
                    'gui_OutputFcn',  @interfazAproximacionSeleccion_OutputFcn, ...
-                   'gui_LayoutFcn',  [] , ...
+                   'gui_LayoutFcn',  [], ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
-    gui_State.gui_Callback = str2func(varargin{1});
+   gui_State.gui_Callback = str2func(varargin{1});
 end
 
 if nargout
@@ -50,7 +50,8 @@ function interfazAproximacionSeleccion_OpeningFcn(hObject, eventdata, handles, v
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to interfazAproximacionSeleccion (see VARARGIN)
+% varargin   unrecognized PropertyName/PropertyValue pairs from the
+%            command line (see VARARGIN)
 
 % Choose default command line output for interfazAproximacionSeleccion
 handles.output = hObject;
@@ -63,7 +64,7 @@ guidata(hObject, handles);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = interfazAproximacionSeleccion_OutputFcn(hObject, eventdata, handles) 
+function varargout = interfazAproximacionSeleccion_OutputFcn(hObject, eventdata, handles)
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -78,6 +79,9 @@ function volverAInicioButton_Callback(hObject, eventdata, handles)
 % hObject    handle to volverAInicioButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+close;
+
+interfazPrincipal();
 
 
 % --- Executes on button press in linealButton.
@@ -85,6 +89,7 @@ function linealButton_Callback(hObject, eventdata, handles)
 % hObject    handle to linealButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+interfazAproximacionLineal;
 
 
 % --- Executes on button press in parabolicaButton.
@@ -108,8 +113,16 @@ function potencialButton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in pushbutton5.
-function pushbutton5_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton5 (see GCBO)
+% --- Executes on button press in hiperbolicaButton.
+function hiperbolicaButton_Callback(hObject, eventdata, handles)
+% hObject    handle to hiperbolicaButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes during object creation, after setting all properties.
+function aproximacionFigure_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to aproximacionFigure (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+movegui('northwest');
