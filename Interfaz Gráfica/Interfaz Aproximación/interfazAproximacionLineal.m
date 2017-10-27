@@ -22,7 +22,7 @@ function varargout = interfazAproximacionLineal(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionLineal
 
-% Last Modified by GUIDE v2.5 26-Oct-2017 01:42:43
+% Last Modified by GUIDE v2.5 27-Oct-2017 00:26:21
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -72,19 +72,6 @@ function varargout = interfazAproximacionLineal_OutputFcn(hObject, eventdata, ha
 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
-
-
-% --- Executes during object creation, after setting all properties.
-function funcionText_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to funcionText (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% LEAN BIEN LO DE ARRIBA Y VAN A ENTENDER POR QUÉ NO USO HANDLES EN LOS CreateFcn
-
-% A la propiedad String del Label <Función>, le seteo la fórmula. Todavía
-% tengo que buscar un formato más lindo
-set(hObject, 'String', getStringAproximacionLinealDePrueba);
 
 
 % --- Executes during object creation, after setting all properties.

@@ -17,6 +17,34 @@ function graficarAproximacionLineal(m, b, X)
     fplot(@(x) m*x + b,'g')
     xlim([e1 e2]);
     ylim([e3 e4]);
-    title('Aproximación lineal por mínimos cuadrados');
+    
+    %Asigno el título del gráfico. Sólo puedo mostrar texto con formato
+    %piola en los ploteos, así que cambié el título anterior por la función
+    %aproximante: con los dos últimos parámetros de la función title y
+    %xlabel, se asigna el formato cheto a las funciones.
+    title(['Polinomio aproximante: ' mostrarFuncion(m, b)], 'interpreter', 'latex');
+    xlabel('Error: ', 'interpreter', 'latex');
 
+end
+
+function [funcion] = mostrarFuncion(pendiente, ordenada)
+
+    %Trunca la cantidad de decimales que se muestran por pantalla    
+    digits(4);
+    
+    %Defino la variable de la aproximación lineal para representarla
+    %simbólicamente
+    syms x;
+    
+    
+    %Defino los coeficientes de la aproximación para representarlos
+    %simbólicamentes, estableciendo qué tipo de número quiero porque si no,
+    %sólo muestra números racionales.
+    m = sym(pendiente, 'd');
+    b = sym(ordenada, 'd');
+    
+    %Convierto la expresión formada por los símbolos definidos con sym al
+    %formato LaTex para poder representarlos de forma fachera.
+    funcion = latex(m*x + b);
+    
 end
