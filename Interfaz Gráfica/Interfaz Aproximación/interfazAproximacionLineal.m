@@ -22,7 +22,7 @@ function varargout = interfazAproximacionLineal(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionLineal
 
-% Last Modified by GUIDE v2.5 27-Oct-2017 00:26:21
+% Last Modified by GUIDE v2.5 27-Oct-2017 03:18:17
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -100,3 +100,30 @@ function figure1_CreateFcn(hObject, eventdata, handles)
 
 % Mueve la ventana a otra parte.
 movegui('northeast');
+
+
+% --- Executes during object creation, after setting all properties.
+function sumatoriasTable_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to sumatoriasTable (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+set(hObject, 'Data', getTablaDePrueba);
+
+
+% --- Executes during object creation, after setting all properties.
+function sumatoriasResultadosTable_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to sumatoriasResultadosTable (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+set(hObject, 'Data', getSumatoriasDePrueba);
+set(hObject, 'RowName', {'S '});
+
+
+% --- Executes during object creation, after setting all properties.
+function ecuacionesText_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to ecuacionesText (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+[ecuacion1, ecuacion2] = getEcuaciones;
+
+set(hObject, 'String', [ecuacion1 newline ecuacion2]);
