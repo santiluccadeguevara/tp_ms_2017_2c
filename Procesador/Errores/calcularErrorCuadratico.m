@@ -10,9 +10,10 @@ function [error] = calcularErrorCuadratico(funcion, matriz)
         x0 = matriz(1, i);
         y0 = matriz(2, i);
         
-        valorPorAproximacion = funcion(1)^2 + funcion(2) * (x0) + funcion(3);
+        valorPorAproximacion = funcion(1) * (x0)^2 + funcion(2) * (x0) + funcion(3);
         
         error = error + (valorPorAproximacion - y0) ^ 2;
     end
+    
 end
 

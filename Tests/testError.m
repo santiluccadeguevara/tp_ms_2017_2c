@@ -30,7 +30,7 @@ function testErrorCuadratico(casoDePrueba)
     
     actual = calcularErrorCuadratico([a, b, c], matriz);
     
-    esperado = 4;
+    esperado = 3.527785968148365e-27;
     
     verifyEqual(casoDePrueba, actual, esperado, 'RelTol', 0.0001);
 
