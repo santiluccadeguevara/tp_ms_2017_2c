@@ -90,10 +90,8 @@ function testErrorPotencial(casoDePrueba)
 
 end
 
-function testErrorLineal(casoDePrueba, aproximacionLineal, matriz, valorEsperado) 
+function testErrorLineal(aproximacionL, matriz) 
 
-    actual = calcularErrorLineal(aproximacionLineal, matriz);
-
-    verifyEqual(casoDePrueba, actual, valorEsperado, 'RelTol', 0.0001);
+    
 
 end
