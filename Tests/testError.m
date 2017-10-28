@@ -1,28 +1,14 @@
-%function tests = testError
-%    tests = functiontests(localfunctions);
-%end
-
-%{
+function tests = testError
+    tests = functiontests(localfunctions);
+end
 
 function testErrorLineal(casoDePrueba)
 
     matriz = [ 1 2 3 4 ; 10 5 2 1 ];
     
-    [m, b] = aproximacionLineal(matriz);
-    
-    actual = calcularErrorLineal([m, b], matriz);
-    
-    esperado = 4;
-    
-    verifyEqual(casoDePrueba, actual, esperado, 'RelTol', 0.0001);
+    testErrorLineal(casoDePrueba, matriz, aproximacionLineal(matriz), 4);
 
 end
-
-% Funciona, pero lo comento porque me rompe el test siguiente
-
-%}
-
-%{
 
 function testErrorCuadratico(casoDePrueba)
 
@@ -30,69 +16,44 @@ function testErrorCuadratico(casoDePrueba)
     
     [a, b, c] = aproximacionCuadratica(matriz);
     
-    actual = calcularErrorCuadratico([a, b, c], matriz);
-    
-    esperado = 3.527785968148365e-27;
-    
-    verifyEqual(casoDePrueba, actual, esperado, 'RelTol', 0.0001);
+    contrastarValores(casoDePrueba, calcularErrorCuadratico([a, b, c], matriz), 3.527785968148365e-27);
 
 end
 
-%}
-
-%{
 
 function testErrorExponencial(casoDePrueba)
-
+    
     matriz = [ 1 2 3 4 ; 10 5 2 1 ];
 
-    [m, b] = aproximacionExponencial(matriz);
-    
-    actual = calcularErrorLineal([m, b], matriz);
-    
-    esperado = 1.040422538172001e+03;
-    
-    verifyEqual(casoDePrueba, actual, esperado, 'RelTol', 0.0001);
+    testErrorLineal(casoDePrueba, matriz, aproximacionExponencial(matriz), 1.040422538172001e+03);
     
 end
-
-%}
-
-%{
 
 function testErrorHiperbolica(casoDePrueba)
 
     matriz = [ 1 2 3 4 ; 10 5 2 1 ];
 
-    [m, b] = aproximacionHiperbolica(matriz);
-    
-    actual = calcularErrorLineal([m, b], matriz);
-    
-    esperado = 2.366666666666667e+02;
-    
-    verifyEqual(casoDePrueba, actual, esperado, 'RelTol', 0.0001);
+    testErrorLineal(casoDePrueba, matriz, aproximacionHiperbolica(matriz), 2.366666666666667e+02);
     
 end
-
-%}
 
 function testErrorPotencial(casoDePrueba)
 
     matriz = [ 1 2 3 4 ; 10 5 2 1 ];
 
-    [m, b] = aproximacionPotencial(matriz);
+    testErrorLineal(casoDePrueba, matriz, aproximacionPotencial(matriz), 50.6864);
     
-    actual = calcularErrorLineal([m, b], matriz);
-    
-    esperado = 50.6864;
-    
-    verifyEqual(casoDePrueba, actual, esperado, 'RelTol', 0.0001);
+end
+
+function errorLinealGenerico(casoDePrueba, matriz, aproximacionLineal, valorEsperado) 
+
+    actual = calcularErrorLineal(aproximacionLineal, matriz);
+
+    contrastarValores(casoDePrueba, actual, valorEsperado);
 
 end
 
-function testErrorLineal(casoDePrueba, aproximacionLineal, matriz, valorEsperado) 
-
-    actual = calcularErrorLineal(aproximacionLineal, matriz);
+function contrastarValores(casoDePrueba, actual, valorEsperado)
 
     verifyEqual(casoDePrueba, actual, valorEsperado, 'RelTol', 0.0001);
 
