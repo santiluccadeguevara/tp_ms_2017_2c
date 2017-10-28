@@ -6,7 +6,7 @@ function testErrorLineal(casoDePrueba)
 
     matriz = [ 1 2 3 4 ; 10 5 2 1 ];
     
-    testErrorLineal(casoDePrueba, matriz, aproximacionLineal(matriz), 4);
+    errorLinealGenerico(casoDePrueba, matriz, aproximacionLineal(matriz), 4);
 
 end
 
@@ -25,7 +25,7 @@ function testErrorExponencial(casoDePrueba)
     
     matriz = [ 1 2 3 4 ; 10 5 2 1 ];
 
-    testErrorLineal(casoDePrueba, matriz, aproximacionExponencial(matriz), 1.040422538172001e+03);
+    errorLinealGenerico(casoDePrueba, matriz, aproximacionExponencial(matriz), 1.040422538172001e+03);
     
 end
 
@@ -33,7 +33,7 @@ function testErrorHiperbolica(casoDePrueba)
 
     matriz = [ 1 2 3 4 ; 10 5 2 1 ];
 
-    testErrorLineal(casoDePrueba, matriz, aproximacionHiperbolica(matriz), 2.366666666666667e+02);
+    errorLinealGenerico(casoDePrueba, matriz, aproximacionHiperbolica(matriz), 2.366666666666667e+02);
     
 end
 
@@ -41,7 +41,7 @@ function testErrorPotencial(casoDePrueba)
 
     matriz = [ 1 2 3 4 ; 10 5 2 1 ];
 
-    testErrorLineal(casoDePrueba, matriz, aproximacionPotencial(matriz), 50.6864);
+    errorLinealGenerico(casoDePrueba, matriz, aproximacionPotencial(matriz), 50.6864);
     
 end
 
