@@ -115,7 +115,7 @@ if (isnan(str2double(decimales)))
 elseif(contains(decimales,',')||contains(decimales,'.'))
     set(handles.txtEstadoDecimales,'String','Solo se permiten enteros. Intente de nuevo.'); 
     set(handles.tbxDecimales,'String','');
-elseif(str2double(decimales)>15||str2double(decimales)<0)
+elseif(str2double(decimales)>14||str2double(decimales)<0)
     set(handles.txtEstadoDecimales,'String','El valor ingresado está fuera del rango que maneja este programa. Intente de nuevo.'); 
     set(handles.tbxDecimales,'String','');
 else
