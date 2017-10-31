@@ -22,7 +22,7 @@ function varargout = wDefinirDecimales(varargin)
 
 % Edit the above text to modify the response to help wDefinirDecimales
 
-% Last Modified by GUIDE v2.5 25-Oct-2017 05:30:14
+% Last Modified by GUIDE v2.5 30-Oct-2017 13:46:18
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -33,6 +33,7 @@ gui_State = struct('gui_Name',       mfilename, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
+    warning('off','all')
     gui_State.gui_Callback = str2func(varargin{1});
 end
 
@@ -42,7 +43,7 @@ else
     gui_mainfcn(gui_State, varargin{:});
 end
 % End initialization code - DO NOT EDIT
-
+movegui('center');
 
 % --- Executes just before wDefinirDecimales is made visible.
 function wDefinirDecimales_OpeningFcn(hObject, eventdata, handles, varargin)
@@ -52,15 +53,16 @@ function wDefinirDecimales_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to wDefinirDecimales (see VARARGIN)
 
+handles.tabla=varargin{1};
 % Choose default command line output for wDefinirDecimales
 handles.output = hObject;
 
 % Update handles structure
 guidata(hObject, handles);
+% movegui('center');
 
 % UIWAIT makes wDefinirDecimales wait for user response (see UIRESUME)
-% uiwait(handles.figure1);
-
+% uiwait(handles.figure2);
 
 % --- Outputs from this function are returned to the command line.
 function varargout = wDefinirDecimales_OutputFcn(hObject, eventdata, handles) 
@@ -71,8 +73,6 @@ function varargout = wDefinirDecimales_OutputFcn(hObject, eventdata, handles)
 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
-
-
 
 function tbxDecimales_Callback(hObject, eventdata, handles)
 % hObject    handle to tbxDecimales (see GCBO)
@@ -95,37 +95,53 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+
 % --- Executes on button press in btnEstablecer.
 function btnEstablecer_Callback(hObject, eventdata, handles)
 % hObject    handle to btnEstablecer (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-format long;
-global decimales;
-aux=get(handles.tbxDecimales,'String');
+tabla=handles.tabla;
+decimales=get(handles.tbxDecimales,'String');
 
 %Acá se verifica que el valor ingresado por el usuario (para editar una fila)
 %se corresponda con alguno de los números de fila para poder eliminarlo.
 %Caso contrario se le informa que no puede continuar.
 
-if isstrprop(aux,'digit')
-    aux=str2double(aux);
-    if aux<16&&aux>-1
-        decimales=num2str(aux);
-        close wDefinirDecimales;
-    else
-       set(handles.txtEstadoDecimales,'String','El valor ingresado está fuera del rango que maneja este programa. Intente de nuevo.'); 
-       set(handles.tbxDecimales,'String','');
-    end
-else
+if (isnan(str2double(decimales)))
     set(handles.txtEstadoDecimales,'String','El valor ingresado no es un número');
     set(handles.tbxDecimales,'String','');
+elseif(contains(decimales,',')||contains(decimales,'.'))
+    set(handles.txtEstadoDecimales,'String','Solo se permiten enteros. Intente de nuevo.'); 
+    set(handles.tbxDecimales,'String','');
+elseif(str2double(decimales)>15||str2double(decimales)<0)
+    set(handles.txtEstadoDecimales,'String','El valor ingresado está fuera del rango que maneja este programa. Intente de nuevo.'); 
+    set(handles.tbxDecimales,'String','');
+else
+    tabla.decimales=str2double(decimales);
+    tabla.decimalesDefinidos=true;
+    close;
+    wIngresarDatos(tabla);
 end
 
-% --- Executes during object creation, after setting all properties.
-function figure1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to figure1 (see GCBO)
+% --- Executes when user attempts to close figure2.
+function figure2_CloseRequestFcn(hObject, eventdata, handles)
+% hObject    handle to figure2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-movegui('center');
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: delete(hObject) closes the figure
+delete(hObject);
+tabla=handles.tabla;
+wInterfazPrincipal(tabla);
+
+
+% --- Executes on key press with focus on tbxDecimales and none of its controls.
+function tbxDecimales_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to tbxDecimales (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)

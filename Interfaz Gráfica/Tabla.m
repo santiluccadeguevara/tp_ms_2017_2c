@@ -2,17 +2,17 @@ classdef Tabla<matlab.mixin.SetGet
     %Clase para la tabla de valores.
     
     properties
-        matriz=0;
-        largo=0;
+        matriz;
         decimales=0;
+        largo=0;
+        decimalesDefinidos=false;
     end
     
     methods
+        
         function obj = Tabla()
-             obj.matriz=0;
-             obj.largo=0;
-             obj.decimales=0;
-         end
+            matriz=[];
+        end
         function obj = set.matriz(obj,matriz)
             obj.matriz = matriz;
         end
@@ -35,6 +35,14 @@ classdef Tabla<matlab.mixin.SetGet
         
         function decimales = get.decimales(obj)
             decimales = obj.decimales;
+        end
+        
+        function obj = set.decimalesDefinidos(obj,decimalesDefinidos)
+            obj.decimalesDefinidos = decimalesDefinidos;
+        end
+        
+        function decimalesDefinidos = get.decimalesDefinidos(obj)
+            decimalesDefinidos = obj.decimalesDefinidos;
         end
     end
 end
