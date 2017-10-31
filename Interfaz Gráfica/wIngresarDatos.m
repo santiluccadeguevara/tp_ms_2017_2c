@@ -96,7 +96,26 @@ function btnAproximar_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-
+tabla=handles.tabla;
+if isempty(tabla.matriz)
+    set(handles.txtEstadoIngresarDatos,'String','No hay datos para aproximar')
+else
+    
+    aproximacion=get(handles.lbxAproximaciones,'Value');
+    switch (aproximacion)
+        case 1
+            aproximacionLineal(tabla.matriz');
+        case 2
+            aproximacionCuadratica(tabla.matriz');
+        case 3
+            aproximacionExponencial(tabla.matriz');
+        case 4
+            aproximacionPotencial(tabla.matriz');
+        case 5
+            aproximacionHiperbolica(tabla.matriz');
+    end
+    close;
+end
 
 function tbxEditar_Callback(hObject, eventdata, handles)
 % hObject    handle to tbxEditar (see GCBO)
