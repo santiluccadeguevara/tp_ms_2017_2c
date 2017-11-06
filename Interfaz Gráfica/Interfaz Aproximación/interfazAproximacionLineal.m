@@ -163,6 +163,8 @@ function graficoLineal_CreateFcn(hObject, eventdata, handles)
 % renderizar los gráficos.
 axes(hObject);
 
+zoom on;
+
 [m , b] = aproximacionLineal(getCoordenadasDePrueba);
 
 % Grafico en el eje después de obtener los coeficientes.

@@ -7,4 +7,3 @@ function [sumatorias] = sumatoriaLineal(datos)
     sumatorias = [ n sum(tabla)];
     
 end
-
