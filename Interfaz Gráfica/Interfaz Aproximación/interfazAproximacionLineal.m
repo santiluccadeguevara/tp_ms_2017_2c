@@ -22,7 +22,7 @@ function varargout = interfazAproximacionLineal(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionLineal
 
-% Last Modified by GUIDE v2.5 27-Oct-2017 03:18:17
+% Last Modified by GUIDE v2.5 06-Nov-2017 11:30:21
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -86,7 +86,7 @@ function grafico_CreateFcn(hObject, eventdata, handles)
 % renderizar los gráficos.
 axes(hObject);
 
-[m , b] = getAproximacionLinealDePrueba;
+[m , b] = aproximacionLineal(getCoordenadasDePrueba);
 
 % Grafico en el eje después de obtener los coeficientes.
 graficarAproximacionLineal(m , b, getCoordenadasDePrueba);
@@ -107,7 +107,7 @@ function sumatoriasTable_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to sumatoriasTable (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', getTablaDePrueba);
+set(hObject, 'Data', tablaLineal(getCoordenadasDePrueba));
 
 
 % --- Executes during object creation, after setting all properties.
@@ -115,15 +115,14 @@ function sumatoriasResultadosTable_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to sumatoriasResultadosTable (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', getSumatoriasDePrueba);
+set(hObject, 'Data', sum(tablaLineal(getCoordenadasDePrueba)));
+
 set(hObject, 'RowName', {'S '});
 
 
 % --- Executes during object creation, after setting all properties.
-function ecuacionesText_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to ecuacionesText (see GCBO)
+function ecuacionesTable_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to ecuacionesTable (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-[ecuacion1, ecuacion2] = getEcuaciones;
-
-set(hObject, 'String', [ecuacion1 newline ecuacion2]);
+set(hObject, 'Data', ecuacionesLineales(getCoordenadasDePrueba));
