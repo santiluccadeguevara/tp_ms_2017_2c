@@ -15,7 +15,7 @@ function [tabla,resultados] = dameLaTabla(datosParaliticos)
     valorCuadratico = c .* ( xi .^2 ) + d .* xi + e;
     valorExponencial = g .* ( exp(f .* xi ) );
     valorPotencial = i .* ( xi .^ h);
-    valorHiperbolico = j /(xi + k);
+    valorHiperbolico = j ./(xi + k);
     
     errorLineal = calcularColumnaDeError(valorLineal,yi);
     errorCuadratico = calcularColumnaDeError(valorCuadratico,yi);

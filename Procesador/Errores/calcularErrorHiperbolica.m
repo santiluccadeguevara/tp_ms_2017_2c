@@ -8,7 +8,7 @@ function[error] = calcularErrorHiperbolica(funcion, matriz)
     a = funcion(1,1);
     b = funcion(1,2);
     
-    valorHiperbolico = a /(xi + b); 
+    valorHiperbolico = a ./(xi + b); 
     
     error = sum(calcularColumnaDeError(valorHiperbolico,yi));
     
