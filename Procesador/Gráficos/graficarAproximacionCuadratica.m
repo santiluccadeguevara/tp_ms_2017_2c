@@ -1,4 +1,5 @@
 function graficarAproximacionCuadratica(a, b, c, X)
+    digits(4)
 
     for i=1:length(X(1,:)) 
         hold on; 
@@ -17,6 +18,21 @@ function graficarAproximacionCuadratica(a, b, c, X)
     fplot(@(x) a*x.^2 + b*x + c,'k')
     xlim([e1 e2]);
     ylim([e3 e4]);
-    title('Aproximación cuadrática por mínimos cuadrados');
+    
+    title(['Polinomio aproximante: ' mostrarFuncion(a, b, c, X)], 'interpreter', 'latex');
+    
+    xlabel(['Error: ' num2str(calcularErrorCuadratico([a, b, c], X))], 'interpreter', 'latex');
+    
+end
+
+function [funcion] = mostrarFuncion(terminoCuadratico, terminoLineal, terminoIndependiente) 
+
+    syms x;
+
+    a = sym(terminoCuadratico, 'd');
+    b = sym(terminoLineal, 'd');
+    c = sym(terminoIndependiente, 'd');
+    
+    funcion = latex(a*x^2 + b*x + c);
     
 end
