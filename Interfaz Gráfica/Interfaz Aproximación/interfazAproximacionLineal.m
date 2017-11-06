@@ -56,6 +56,38 @@ function interfazAproximacionLineal_OpeningFcn(hObject, eventdata, handles, vara
 % Choose default command line output for interfazAproximacionLineal
 handles.output = hObject;
 
+% Obtengo handles
+
+tablaDatos = handles.sumatoriasTable;
+tablaSumas = handles.sumatoriasResultadosTable;
+
+tablaEcuaciones = handles.ecuacionesTable;
+
+graficoAproximacion = handles.grafico;
+
+% Lleno las tablas con los datos.
+
+set(tablaDatos, 'Data', tablaLineal(getCoordenadasDePrueba));
+
+sumatoria = sumatoriaLineal(getCoordenadasDePrueba);
+
+set(tablaSumas, 'Data', sumatoria(1:6));
+
+set(tablaSumas, 'RowName', {'S'});
+
+% Lleno la tabla de ecuaciones.
+
+set(tablaEcuaciones, 'Data', ecuacionesLineales(getCoordenadasDePrueba));
+
+% Establece los ejes del objeto de la interfaz gráfica donde se van a
+% renderizar los gráficos.
+axes(graficoAproximacion);
+
+[m , b] = aproximacionLineal(getCoordenadasDePrueba);
+
+% Grafico en el eje después de obtener los coeficientes.
+graficarAproximacionLineal(m , b, getCoordenadasDePrueba);
+
 % Update handles structure
 guidata(hObject, handles);
 
@@ -75,24 +107,6 @@ varargout{1} = handles.output;
 
 
 % --- Executes during object creation, after setting all properties.
-function grafico_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to grafico (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: place code in OpeningFcn to populate grafico
-
-% Establece los ejes del objeto de la interfaz gráfica donde se van a
-% renderizar los gráficos.
-axes(hObject);
-
-[m , b] = aproximacionLineal(getCoordenadasDePrueba);
-
-% Grafico en el eje después de obtener los coeficientes.
-graficarAproximacionLineal(m , b, getCoordenadasDePrueba);
-
-
-% --- Executes during object creation, after setting all properties.
 function figure1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to figure1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -100,34 +114,6 @@ function figure1_CreateFcn(hObject, eventdata, handles)
 
 % Mueve la ventana a otra parte.
 movegui('center');
-
-
-% --- Executes during object creation, after setting all properties.
-function sumatoriasTable_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to sumatoriasTable (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', tablaLineal(getCoordenadasDePrueba));
-
-
-% --- Executes during object creation, after setting all properties.
-function sumatoriasResultadosTable_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to sumatoriasResultadosTable (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-sumatoria = sumatoriaLineal(getCoordenadasDePrueba);
-
-set(hObject, 'Data', sumatoria(1:6));
-
-set(hObject, 'RowName', {'S'});
-
-
-% --- Executes during object creation, after setting all properties.
-function ecuacionesTable_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to ecuacionesTable (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', ecuacionesLineales(getCoordenadasDePrueba));
 
 
 % --- Executes on button press in pushbutton1.

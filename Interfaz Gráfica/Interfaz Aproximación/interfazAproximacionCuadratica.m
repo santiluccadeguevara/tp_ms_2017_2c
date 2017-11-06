@@ -86,10 +86,10 @@ function grafico_CreateFcn(hObject, eventdata, handles)
 % renderizar los gráficos.
 axes(hObject);
 
-[m , b] = aproximacionLineal(getCoordenadasDePrueba);
+[a, b , c] = aproximacionLineal(getCoordenadasDePrueba);
 
 % Grafico en el eje después de obtener los coeficientes.
-graficarAproximacionLineal(m , b, getCoordenadasDePrueba);
+graficarAproximacionCuadratica(a , b, c, getCoordenadasDePrueba);
 
 
 % --- Executes during object creation, after setting all properties.

@@ -1,5 +1,5 @@
-%runtests('testAproximaciones.m');
+runtests('testAproximaciones.m');
 
 runtests('testError.m');
 
-%testGraficos;
+testGraficos;
