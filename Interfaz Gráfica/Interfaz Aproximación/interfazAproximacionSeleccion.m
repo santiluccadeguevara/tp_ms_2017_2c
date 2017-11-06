@@ -53,6 +53,8 @@ function interfazAproximacionSeleccion_OpeningFcn(hObject, eventdata, handles, v
 % varargin   unrecognized PropertyName/PropertyValue pairs from the
 %            command line (see VARARGIN)
 
+handles.tabla=varargin{1};
+
 % Choose default command line output for interfazAproximacionSeleccion
 handles.output = hObject;
 
@@ -79,9 +81,9 @@ function volverAInicioButton_Callback(hObject, eventdata, handles)
 % hObject    handle to volverAInicioButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-close;
+close all;
 
-interfazPrincipal();
+interfazPrincipal(handles.tabla);
 
 
 % --- Executes on button press in linealButton.
@@ -90,7 +92,7 @@ function linealButton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 close;
-interfazAproximacionLineal;
+interfazAproximacionLineal(handles.tabla);
 
 
 % --- Executes on button press in parabolicaButton.

@@ -100,7 +100,7 @@ tabla=handles.tabla;
 if isempty(tabla.matriz)
     set(handles.txtEstadoIngresarDatos,'String','No hay datos para aproximar')
 else
-    interfazAproximacionSeleccion(tabla');
+    interfazAproximacionSeleccion(tabla);
 end
 
 function tbxEditar_Callback(hObject, eventdata, handles)
