@@ -100,21 +100,7 @@ tabla=handles.tabla;
 if isempty(tabla.matriz)
     set(handles.txtEstadoIngresarDatos,'String','No hay datos para aproximar')
 else
-    
-    aproximacion=get(handles.lbxAproximaciones,'Value');
-    switch (aproximacion)
-        case 1
-            interfazAproximacionLineal(tabla.matriz');
-        case 2
-            aproximacionCuadratica(tabla.matriz');
-        case 3
-            aproximacionExponencial(tabla.matriz');
-        case 4
-            aproximacionPotencial(tabla.matriz');
-        case 5
-            aproximacionHiperbolica(tabla.matriz');
-    end
-    close;
+    interfazAproximacionSeleccion(tabla);
 end
 
 function tbxEditar_Callback(hObject, eventdata, handles)
@@ -389,12 +375,12 @@ elseif strcmp(nuevoXi,"")||strcmp(nuevoFXi,"")
     set(handles.txtEstadoIngresarDatos,'String','Debe completar ambos campos.')
 elseif isnan(str2double(nuevoXi))||isnan(str2double(nuevoFXi))
     set(handles.txtEstadoIngresarDatos,'String','Al menos uno de los campos contenía caracteres inválidos. Intente de nuevo por favor.')
-    set(handles.tbxNuevoXi,'String','');
-    set(handles.tbxNuevoFXi,'String','');
+    set(handles.tbxNuevoXi,'String',tabla.matriz(str2double(fila),1));
+    set(handles.tbxNuevoFXi,'String',tabla.matriz(str2double(fila),2));
 elseif(~isempty(tabla.matriz)&&ismember(str2double(nuevoXi),tabla.matriz(:,1)))
     set(handles.txtEstadoIngresarDatos,'String','Ya hay un par ordenado en la tabla para la abscisa ingresada. Intente de nuevo por favor.');
-    set(handles.tbxNuevoXi,'String','');
-    set(handles.tbxNuevoFXi,'String','');
+    set(handles.tbxNuevoXi,'String',tabla.matriz(str2double(fila),1));
+    set(handles.tbxNuevoFXi,'String',tabla.matriz(str2double(fila),2));
 else
     nuevoXi=EstablecerDecimales(nuevoXi,tabla);
     nuevoFXi=EstablecerDecimales(nuevoFXi,tabla);
