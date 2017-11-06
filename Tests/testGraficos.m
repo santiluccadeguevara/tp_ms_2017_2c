@@ -1,9 +1,9 @@
 function testGraficos()
-    %testGraficoLineal();
+    testGraficoLineal();
     testGraficoCuadratica();
-    %testGraficoExponencial();
-    %testGraficoPotencial();
-    %testGraficoHiperbolica();
+    testGraficoExponencial();
+    testGraficoPotencial();
+    testGraficoHiperbolica();
 end
 
 function testGraficoLineal()

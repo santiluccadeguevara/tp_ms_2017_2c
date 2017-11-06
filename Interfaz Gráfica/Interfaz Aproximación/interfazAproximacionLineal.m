@@ -22,7 +22,7 @@ function varargout = interfazAproximacionLineal(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionLineal
 
-% Last Modified by GUIDE v2.5 06-Nov-2017 12:58:37
+% Last Modified by GUIDE v2.5 06-Nov-2017 17:28:42
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -53,43 +53,41 @@ function interfazAproximacionLineal_OpeningFcn(hObject, eventdata, handles, vara
 % varargin   unrecognized PropertyName/PropertyValue pairs from the
 %            command line (see VARARGIN)
 
+
+
 % Choose default command line output for interfazAproximacionLineal
 handles.output = hObject;
 
-% Obtengo handles
+% Update handles structure
+guidata(hObject, handles);
 
-tablaDatos = handles.sumatoriasTable;
-tablaSumas = handles.sumatoriasResultadosTable;
+% Ripeo
 
-tablaEcuaciones = handles.ecuacionesTable;
+%{
+Lleno las tablas con los datos.
 
-graficoAproximacion = handles.grafico;
-
-% Lleno las tablas con los datos.
-
-set(tablaDatos, 'Data', tablaLineal(getCoordenadasDePrueba));
+set(handles.tablaDatos, 'Data', tablaLineal(getCoordenadasDePrueba));
 
 sumatoria = sumatoriaLineal(getCoordenadasDePrueba);
 
-set(tablaSumas, 'Data', sumatoria(1:6));
+set(handles.tablaSumas, 'Data', sumatoria(1:6));
 
-set(tablaSumas, 'RowName', {'S'});
+set(handles.tablaSumas, 'RowName', {'S'});
 
 % Lleno la tabla de ecuaciones.
 
-set(tablaEcuaciones, 'Data', ecuacionesLineales(getCoordenadasDePrueba));
+set(handles.tablaEcuaciones, 'Data', ecuacionesLineales(getCoordenadasDePrueba));
 
 % Establece los ejes del objeto de la interfaz gráfica donde se van a
 % renderizar los gráficos.
-axes(graficoAproximacion);
+axes(handles.graficoAproximacion);
 
 [m , b] = aproximacionLineal(getCoordenadasDePrueba);
 
 % Grafico en el eje después de obtener los coeficientes.
 graficarAproximacionLineal(m , b, getCoordenadasDePrueba);
 
-% Update handles structure
-guidata(hObject, handles);
+%}
 
 % UIWAIT makes interfazAproximacionLineal wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
@@ -123,3 +121,49 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 close;
 interfazAproximacionSeleccion;
+
+
+% --- Executes during object creation, after setting all properties.
+function sumatoriasTable_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to sumatoriasTable (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+set(hObject, 'Data', tablaLineal(getCoordenadasDePrueba));
+
+
+% --- Executes during object creation, after setting all properties.
+function sumatoriasResultadosTable_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to sumatoriasResultadosTable (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+sumatoria = sumatoriaLineal(getCoordenadasDePrueba);
+
+set(hObject, 'Data', sumatoria(1:6));
+
+set(hObject, 'RowName', {'S'});
+
+
+% --- Executes during object creation, after setting all properties.
+function ecuacionesTable_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to ecuacionesTable (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+set(hObject, 'Data', ecuacionesLineales(getCoordenadasDePrueba));
+
+
+% --- Executes during object creation, after setting all properties.
+function graficoLineal_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to graficoLineal (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: place code in OpeningFcn to populate graficoLineal
+
+% Establece los ejes del objeto de la interfaz gráfica donde se van a
+% renderizar los gráficos.
+axes(hObject);
+
+[m , b] = aproximacionLineal(getCoordenadasDePrueba);
+
+% Grafico en el eje después de obtener los coeficientes.
+graficarAproximacionLineal(m , b, getCoordenadasDePrueba);
