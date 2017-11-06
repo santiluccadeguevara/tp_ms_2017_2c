@@ -22,7 +22,7 @@ function varargout = interfazAproximacionLineal(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionLineal
 
-% Last Modified by GUIDE v2.5 06-Nov-2017 12:13:53
+% Last Modified by GUIDE v2.5 06-Nov-2017 12:58:37
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
