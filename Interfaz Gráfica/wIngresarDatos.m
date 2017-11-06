@@ -104,7 +104,7 @@ else
     aproximacion=get(handles.lbxAproximaciones,'Value');
     switch (aproximacion)
         case 1
-            aproximacionLineal(tabla.matriz');
+            interfazAproximacionLineal(tabla.matriz');
         case 2
             aproximacionCuadratica(tabla.matriz');
         case 3

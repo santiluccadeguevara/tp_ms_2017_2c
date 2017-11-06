@@ -5,9 +5,9 @@ function [a,b]=aproximacionHiperbolica(X)
     n=length(X(1,:));
     
     A=0;%Es la sumatoria de Xi 
-    B=0;%Es la sumatoria de Yi
+    B=0;%Es la sumatoria de 1/Yi
     C=0;%Es la sumatoria de Xi al cuadrado
-    D=0;%Es la sumatoria de Yi*Xi
+    D=0;%Es la sumatoria de (1/Yi)*Xi
 
     for i=1:n
         A=A+X(1,i);
