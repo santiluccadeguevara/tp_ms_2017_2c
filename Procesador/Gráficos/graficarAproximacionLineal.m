@@ -1,4 +1,6 @@
 function graficarAproximacionLineal(m, b, X)
+    %Trunca la cantidad de decimales que se muestran por pantalla    
+    digits(4);
 
     for i=1:length(X(1,:))
         hold on; 
@@ -22,16 +24,20 @@ function graficarAproximacionLineal(m, b, X)
     %piola en los ploteos, así que cambié el título anterior por la función
     %aproximante: con los dos últimos parámetros de la función title y
     %xlabel, se asigna el formato cheto a las funciones.
+    
     title(['Polinomio aproximante: ' mostrarFuncion(m, b)], 'interpreter', 'latex');
-    xlabel('Error: ', 'interpreter', 'latex');
+    
+    xlabel(['Error: ' num2str(calcularErrorLineal([m, b], X))], 'interpreter', 'latex');
+    
+    [ecuacion1, ecuacion2] = mostrarEcuaciones(X);
+    
+    text(2, 10, ecuacion1);
+    
+    text(2, 8, ecuacion2);
 
 end
 
-function [funcion] = mostrarFuncion(pendiente, ordenada)
-
-    %Trunca la cantidad de decimales que se muestran por pantalla    
-    digits(4);
-    
+function [funcion] = mostrarFuncion(pendiente, ordenada)    
     %Defino la variable de la aproximación lineal para representarla
     %simbólicamente
     syms x;
