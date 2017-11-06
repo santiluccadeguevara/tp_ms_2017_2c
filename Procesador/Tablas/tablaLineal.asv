@@ -10,27 +10,20 @@ function [tabla] = tablaLineal(datos)
     tabla = [ xi yi xi2 xiyi p e];
 end
 
-function [p] = polinomio(datos)
+function 
 
-    [m , b] = aproximacionLineal(datos);
+function [error] = errores(datos)
+
+    [a , b] = aproximacionLineal(datos);
 
     matriz = datos';
     
     xi = matriz(:,1);
-
-    p = (m .* xi) + b;
-    
-end
-
-function [e] = errores(datos)
-
-    p = polinomio(datos);
-    
-    matriz = datos';
-    
     yi = matriz(:,2);
+
+    valorLineal = a .* xi + b;
     
-    e = calcularColumnaDeError(p, yi);
+    error = calcularColumnaDeError(valorLineal, yi);
 
 end
 

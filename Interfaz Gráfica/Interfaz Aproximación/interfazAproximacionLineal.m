@@ -22,7 +22,7 @@ function varargout = interfazAproximacionLineal(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionLineal
 
-% Last Modified by GUIDE v2.5 06-Nov-2017 11:30:21
+% Last Modified by GUIDE v2.5 06-Nov-2017 12:13:53
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -99,7 +99,7 @@ function figure1_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Mueve la ventana a otra parte.
-movegui('northeast');
+movegui('center');
 
 
 % --- Executes during object creation, after setting all properties.
@@ -126,3 +126,12 @@ function ecuacionesTable_CreateFcn(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 set(hObject, 'Data', ecuacionesLineales(getCoordenadasDePrueba));
+
+
+% --- Executes on button press in pushbutton1.
+function pushbutton1_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+close;
+interfazAproximacionSeleccion;

@@ -28,12 +28,6 @@ function graficarAproximacionLineal(m, b, X)
     title(['Polinomio aproximante: ' mostrarFuncion(m, b)], 'interpreter', 'latex');
     
     xlabel(['Error: ' num2str(calcularErrorLineal([m, b], X))], 'interpreter', 'latex');
-    
-    [ecuacion1, ecuacion2] = mostrarEcuaciones(X);
-    
-    text(2, 10, ecuacion1);
-    
-    text(2, 8, ecuacion2);
 
 end
 

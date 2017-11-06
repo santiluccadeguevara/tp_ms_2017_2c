@@ -89,6 +89,7 @@ function linealButton_Callback(hObject, eventdata, handles)
 % hObject    handle to linealButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+close;
 interfazAproximacionLineal;
 
 
@@ -125,4 +126,4 @@ function aproximacionFigure_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to aproximacionFigure (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-movegui('northwest');
+movegui('center');
