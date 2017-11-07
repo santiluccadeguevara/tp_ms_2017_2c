@@ -102,7 +102,9 @@ function btnAproximar_Callback(hObject, eventdata, handles)
 
 tabla=handles.tabla;
 if isempty(tabla.matriz)
-    set(handles.txtEstadoIngresarDatos,'String','No hay datos para aproximar')
+    set(handles.txtEstadoIngresarDatos,'String','No hay datos para aproximar');
+elseif tabla.largo==1
+    set(handles.txtEstadoIngresarDatos,'String','Debe ingresar al menos dos pares ordenados para realizar una aproximación');
 else
     interfazAproximacionSeleccion(tabla);
 end

@@ -62,9 +62,14 @@ elseif isempty(varargin{1}.matriz)
     set(handles.txtEstadoPrincipal,'String','Nueva sesión iniciada - Tabla de valores vacía.');
     set(handles.btnComparar,'Enable','off');
     set(handles.btnIngresarDatos,'String','Ingresar datos');
+elseif varargin{1}.largo==1
+    handles.tabla=varargin{1};
+    set(handles.txtEstadoPrincipal,'String',strcat(num2str(handles.tabla.largo),' par ordenado en la tabla de valores. Para poder comparar aproximaciones, debe ingresar al menos 2 pares ordenados.'));
+    set(handles.btnComparar,'Enable','off');
+    set(handles.btnIngresarDatos,'String','Editar tabla');
 else
     handles.tabla=varargin{1};
-    set(handles.txtEstadoPrincipal,'String',strcat('Hay ',num2str(handles.tabla.largo),' pares ordenados en la tabla de valores'));
+    set(handles.txtEstadoPrincipal,'String',strcat(num2str(handles.tabla.largo),' pares ordenados en la tabla de valores.'));
     set(handles.btnComparar,'Enable','on');
     set(handles.btnIngresarDatos,'String','Editar tabla');
 end
