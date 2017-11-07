@@ -22,7 +22,7 @@ function varargout = interfazComparacion(varargin)
 
 % Edit the above text to modify the response to help interfazComparacion
 
-% Last Modified by GUIDE v2.5 05-Nov-2017 22:16:04
+% Last Modified by GUIDE v2.5 07-Nov-2017 02:00:58
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -72,11 +72,121 @@ function varargout = interfazComparacion_OutputFcn(hObject, eventdata, handles)
 % Get default command line output from handles structure
 varargout{1} = handles.output;
 
-function miFunction = asdasd.dameLaTabla(datos[]);
+
+% --- Executes on button press in pushbutton1.
+function pushbutton1_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+close all;
+interfazPrincipal(handles.tabla);
+
+% --- Executes during object creation, after setting all properties.
+function figure1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+movegui('center');
 
 % --- Executes during object creation, after setting all properties.
 function uitable1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', getTablaDePrueba);
+[tabla, resultados] = dameLaTabla(getCoordenadasDePrueba);
+
+set(hObject, 'Data', tabla);
+
+
+% --- Executes during object creation, after setting all properties.
+function uitable3_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to uitable3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+[tabla, resultados] = dameLaTabla(getCoordenadasDePrueba);
+
+set(hObject, 'Data', resultados);
+
+
+% --- Executes during object creation, after setting all properties.
+function text7_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to text7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+[valor, indice] = obtenerMejorAproximacion(getCoordenadasDePrueba)
+
+switch indice
+    
+    case 1
+        
+        set(hObject, 'String', 'Aproximación lineal');
+        
+    case 2
+        
+        set(hObject, 'String', 'Aproximación parabólica');
+        
+    case 3
+        
+        set(hObject, 'String', 'Aproximación exponencial');
+        
+    case 4
+        
+        set(hObject, 'String', 'Aproximación parabólica');
+        
+    case 5
+        
+        set(hObject, 'String', 'Aproximación hiperbólica');
+        
+    otherwise
+        
+        set(hObject, 'String', 'Indeterminado');
+end
+    
+
+
+% --- Executes during object creation, after setting all properties.
+function axes1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to axes1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: place code in OpeningFcn to populate axes1
+axes(hObject);
+
+zoom on;
+
+[valor, indice] = obtenerMejorAproximacion(getCoordenadasDePrueba)
+
+switch indice
+    
+    case 1
+        
+        [m , b] = aproximacionLineal(getCoordenadasDePrueba);
+        
+        graficarAproximacionLineal(m, b, getCoordenadasDePrueba);
+        
+    case 2
+        
+        [a , b, c] = aproximacionCuadratica(getCoordenadasDePrueba);
+        
+        graficarAproximacionCuadratica(a, b, c, getCoordenadasDePrueba);
+        
+    case 3
+        
+        [a , b] = aproximacionExponencial(getCoordenadasDePrueba);
+        
+        graficarAproximacionExponencial(a, b, getCoordenadasDePrueba);
+        
+    case 4
+        
+        [a , b] = aproximacionPotencial(getCoordenadasDePrueba);
+        
+        graficarAproximacionPotencial(a, b, getCoordenadasDePrueba);
+        
+    case 5
+        
+        [a , b] = aproximacionHiperbolica(getCoordenadasDePrueba);
+        
+        graficarAproximacionHiperbolica(a, b, getCoordenadasDePrueba);
+        
+end
