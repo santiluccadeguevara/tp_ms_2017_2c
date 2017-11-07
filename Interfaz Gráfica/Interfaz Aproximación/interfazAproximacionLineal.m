@@ -63,7 +63,7 @@ guidata(hObject, handles);
 
 set(handles.sumatoriasTable, 'Data', tablaLineal(handles.tabla.matriz'));
 sumatoria = sumatoriaLineal(handles.tabla.matriz');
-set(handles.sumatoriasResultadosTable, 'Data', sumatoria(1:6));
+set(handles.sumatoriasResultadosTable, 'Data', sumatoria(2:7));
 set(handles.sumatoriasResultadosTable, 'RowName', {'S'});
 set(handles.ecuacionesTable, 'Data', ecuacionesLineales(handles.tabla.matriz'));
 axes(handles.graficoLineal);
