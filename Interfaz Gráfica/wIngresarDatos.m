@@ -70,6 +70,10 @@ set(handles.tbValores,'Data',tabla);
 tabla=handles.tabla;
 set(handles.txtDecimales,'String',num2str(tabla.decimales));
 
+if(~isempty(tabla.matriz))
+    set(handles.tbValores,'Data',tabla.matriz);
+end
+
 % --- Outputs from this function are returned to the command line.
 function varargout = wIngresarDatos_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);

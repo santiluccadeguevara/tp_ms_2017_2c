@@ -1,27 +1,25 @@
-function [tabla] = tablaCuadratica(datos)
+function [tabla] = tablaExponencial(datos)
 
     xi = datos(1,:).';
     yi = datos(2,:).';
+    lnyi = log(yi);
     xi2 = xi.^2;
-    xi3 = xi.^3;
-    xi4 = xi.^4;
-    xiyi = xi.*yi;
-    xi2yi = xi2.*yi;
+    xilnyi = xi.*lnyi;
     p = polinomio(datos);
     e = errores(datos, p);
     
-    tabla = [ xi yi xi2 xi3 xi4 xiyi xi2yi p e];
+    tabla = [ xi yi lnyi xi2 xilnyi p e];
 end
 
 function [p] = polinomio(datos)
 
-    [a , b, c] = aproximacionCuadratica(datos);
+    [a , b] = aproximacionExponencial(datos);
 
     matriz = datos';
     
     xi = matriz(:,1);
 
-    p = a .* (xi.^2) + b .* xi + c;
+    p = b.*(exp(xi*a));
     
 end
 

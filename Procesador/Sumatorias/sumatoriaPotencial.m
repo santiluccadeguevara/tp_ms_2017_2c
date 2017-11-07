@@ -1,8 +1,8 @@
-function [sumatorias] = sumatoriaCuadratica(datos)
+function [sumatorias] = sumatoriaPotencial(datos)
 
     n = length(datos(1,:));
     
-    tabla = tablaCuadratica(datos);
+    tabla = tablaPotencial(datos);
     
     sumatorias = [ n sum(tabla)];
     

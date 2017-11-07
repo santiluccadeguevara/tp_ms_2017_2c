@@ -1,27 +1,25 @@
-function [tabla] = tablaCuadratica(datos)
+function [tabla] = tablaHiperbolica(datos)
 
     xi = datos(1,:).';
     yi = datos(2,:).';
+    invyi = 1 ./ (yi);
     xi2 = xi.^2;
-    xi3 = xi.^3;
-    xi4 = xi.^4;
-    xiyi = xi.*yi;
-    xi2yi = xi2.*yi;
+    xiinvyi = xi.*invyi;
     p = polinomio(datos);
     e = errores(datos, p);
     
-    tabla = [ xi yi xi2 xi3 xi4 xiyi xi2yi p e];
+    tabla = [ xi yi invyi xi2 xiinvyi p e];
 end
 
 function [p] = polinomio(datos)
 
-    [a , b, c] = aproximacionCuadratica(datos);
+    [a , b] = aproximacionHiperbolica(datos);
 
     matriz = datos';
     
     xi = matriz(:,1);
 
-    p = a .* (xi.^2) + b .* xi + c;
+    p = a ./ (xi + b);
     
 end
 

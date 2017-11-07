@@ -82,8 +82,7 @@ function volverAInicioButton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 close all;
-
-interfazPrincipal(handles.tabla);
+wInterfazPrincipal(handles.tabla);
 
 
 % --- Executes on button press in linealButton.
@@ -100,6 +99,8 @@ function parabolicaButton_Callback(hObject, eventdata, handles)
 % hObject    handle to parabolicaButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+close;
+interfazAproximacionCuadratica(handles.tabla);
 
 
 % --- Executes on button press in exponencialButton.
@@ -107,13 +108,16 @@ function exponencialButton_Callback(hObject, eventdata, handles)
 % hObject    handle to exponencialButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+close;
+interfazAproximacionExponencial(handles.tabla);
 
 % --- Executes on button press in potencialButton.
 function potencialButton_Callback(hObject, eventdata, handles)
 % hObject    handle to potencialButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+close;
+interfazAproximacionPotencial(handles.tabla);
 
 
 % --- Executes on button press in hiperbolicaButton.
@@ -121,6 +125,8 @@ function hiperbolicaButton_Callback(hObject, eventdata, handles)
 % hObject    handle to hiperbolicaButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+close;
+interfazAproximacionHiperbolica(handles.tabla);
 
 
 % --- Executes during object creation, after setting all properties.

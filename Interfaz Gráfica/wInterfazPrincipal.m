@@ -55,12 +55,18 @@ function wInterfazPrincipal_OpeningFcn(hObject, eventdata, handles, varargin)
 if(isempty(varargin))
     handles.tabla=Tabla();
     set(handles.txtEstadoPrincipal,'String','Nueva sesión iniciada - Tabla de valores vacía.');
+    set(handles.btnComparar,'Enable','off');
+    set(handles.btnIngresarDatos,'String','Ingresar datos');
 elseif isempty(varargin{1}.matriz)
     handles.tabla=varargin{1};
     set(handles.txtEstadoPrincipal,'String','Nueva sesión iniciada - Tabla de valores vacía.');
+    set(handles.btnComparar,'Enable','off');
+    set(handles.btnIngresarDatos,'String','Ingresar datos');
 else
     handles.tabla=varargin{1};
-    set(handles.txtEstadoPrincipal,'String',strcat('Se guardaron ',num2str(handles.tabla.largo),' pares ordenados en la tabla de valores'));
+    set(handles.txtEstadoPrincipal,'String',strcat('Hay ',num2str(handles.tabla.largo),' pares ordenados en la tabla de valores'));
+    set(handles.btnComparar,'Enable','on');
+    set(handles.btnIngresarDatos,'String','Editar tabla');
 end
 
 format long;
@@ -95,7 +101,11 @@ function btnIngresarDatos_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 tabla=handles.tabla;
 
-wDefinirDecimales(tabla);
+if tabla.decimalesDefinidos==false
+    wDefinirDecimales(tabla);
+else
+    wIngresarDatos(tabla);
+end
 
 
 % --- Executes on button press in btnComparar.
@@ -104,6 +114,7 @@ function btnComparar_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+interfazComparacion(handles.tabla);
 
 % --- Executes on button press in btnFinalizar.
 function btnFinalizar_Callback(hObject, eventdata, handles)

@@ -1,35 +1,35 @@
-function varargout = interfazAproximacionCuadratica(varargin)
-% INTERFAZAPROXIMACIONCUADRATICA MATLAB code for interfazAproximacionCuadratica.fig
-%      INTERFAZAPROXIMACIONCUADRATICA, by itself, creates a new INTERFAZAPROXIMACIONCUADRATICA or raises the existing
+function varargout = interfazAproximacionHiperbolica(varargin)
+% INTERFAZAPROXIMACIONHIPERBOLICA MATLAB code for interfazAproximacionHiperbolica.fig
+%      INTERFAZAPROXIMACIONHIPERBOLICA, by itself, creates a new INTERFAZAPROXIMACIONHIPERBOLICA or raises the existing
 %      singleton*.
 %
-%      H = INTERFAZAPROXIMACIONCUADRATICA returns the handle to a new INTERFAZAPROXIMACIONCUADRATICA or the handle to
+%      H = INTERFAZAPROXIMACIONHIPERBOLICA returns the handle to a new INTERFAZAPROXIMACIONHIPERBOLICA or the handle to
 %      the existing singleton*.
 %
-%      INTERFAZAPROXIMACIONCUADRATICA('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in INTERFAZAPROXIMACIONCUADRATICA.M with the given input arguments.
+%      INTERFAZAPROXIMACIONHIPERBOLICA('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in INTERFAZAPROXIMACIONHIPERBOLICA.M with the given input arguments.
 %
-%      INTERFAZAPROXIMACIONCUADRATICA('Property','Value',...) creates a new INTERFAZAPROXIMACIONCUADRATICA or raises the
+%      INTERFAZAPROXIMACIONHIPERBOLICA('Property','Value',...) creates a new INTERFAZAPROXIMACIONHIPERBOLICA or raises the
 %      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before interfazAproximacionCuadratica_OpeningFcn gets called.  An
+%      applied to the GUI before interfazAproximacionHiperbolica_OpeningFcn gets called.  An
 %      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to interfazAproximacionCuadratica_OpeningFcn via varargin.
+%      stop.  All inputs are passed to interfazAproximacionHiperbolica_OpeningFcn via varargin.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
 
-% Edit the above text to modify the response to help interfazAproximacionCuadratica
+% Edit the above text to modify the response to help interfazAproximacionHiperbolica
 
-% Last Modified by GUIDE v2.5 07-Nov-2017 11:05:52
+% Last Modified by GUIDE v2.5 07-Nov-2017 11:06:23
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @interfazAproximacionCuadratica_OpeningFcn, ...
-                   'gui_OutputFcn',  @interfazAproximacionCuadratica_OutputFcn, ...
+                   'gui_OpeningFcn', @interfazAproximacionHiperbolica_OpeningFcn, ...
+                   'gui_OutputFcn',  @interfazAproximacionHiperbolica_OutputFcn, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
@@ -44,38 +44,38 @@ end
 % End initialization code - DO NOT EDIT
 
 
-% --- Executes just before interfazAproximacionCuadratica is made visible.
-function interfazAproximacionCuadratica_OpeningFcn(hObject, eventdata, handles, varargin)
+% --- Executes just before interfazAproximacionHiperbolica is made visible.
+function interfazAproximacionHiperbolica_OpeningFcn(hObject, eventdata, handles, varargin)
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to interfazAproximacionCuadratica (see VARARGIN)
+% varargin   command line arguments to interfazAproximacionHiperbolica (see VARARGIN)
 
 handles.tabla=varargin{1};
 
-% Choose default command line output for interfazAproximacionCuadratica
+% Choose default command line output for interfazAproximacionHiperbolica
 handles.output = hObject;
 
 % Update handles structure
 guidata(hObject, handles);
 
-% UIWAIT makes interfazAproximacionCuadratica wait for user response (see UIRESUME)
+% UIWAIT makes interfazAproximacionHiperbolica wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
-set(handles.uitable1, 'Data', tablaCuadratica(handles.tabla.matriz'));
-sumatoria = sumatoriaCuadratica(handles.tabla.matriz');
-set(handles.uitable2, 'Data', sumatoria(2:10));
+set(handles.uitable1, 'Data', tablaHiperbolica(handles.tabla.matriz'));
+sumatoria = sumatoriaHiperbolica(handles.tabla.matriz');
+set(handles.uitable2, 'Data', sumatoria(2:8));
 set(handles.uitable2, 'RowName', {'S'});
-set(handles.uitable3, 'Data', ecuacionesCuadraticas(handles.tabla.matriz'));
+set(handles.uitable3, 'Data', ecuacionesHiperbolicas(handles.tabla.matriz'));
 axes(handles.axes2);
 zoom on;
-[a , b, c] = aproximacionCuadratica(handles.tabla.matriz');
-graficarAproximacionCuadratica(a, b, c, handles.tabla.matriz');
+[m , b] = aproximacionHiperbolica(handles.tabla.matriz');
+graficarAproximacionHiperbolica(m, b, handles.tabla.matriz');
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = interfazAproximacionCuadratica_OutputFcn(hObject, eventdata, handles) 
+function varargout = interfazAproximacionHiperbolica_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -92,6 +92,14 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 interfazAproximacionSeleccion(handles.tabla);
 close;
+
+% --- Executes during object creation, after setting all properties.
+function figure1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+% Mueve la ventana a otra parte.
+movegui('center');
 
 
 % --- Executes during object creation, after setting all properties.
@@ -122,14 +130,6 @@ function axes2_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Hint: place code in OpeningFcn to populate axes2
-
-
-% --- Executes during object creation, after setting all properties.
-function figure1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to figure1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-movegui('center');
 
 
 % --- Executes when user attempts to close figure1.

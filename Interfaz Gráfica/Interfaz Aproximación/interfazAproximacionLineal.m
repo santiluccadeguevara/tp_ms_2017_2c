@@ -22,7 +22,7 @@ function varargout = interfazAproximacionLineal(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionLineal
 
-% Last Modified by GUIDE v2.5 06-Nov-2017 12:58:37
+% Last Modified by GUIDE v2.5 07-Nov-2017 10:59:17
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -53,43 +53,23 @@ function interfazAproximacionLineal_OpeningFcn(hObject, eventdata, handles, vara
 % varargin   unrecognized PropertyName/PropertyValue pairs from the
 %            command line (see VARARGIN)
 
+handles.tabla=varargin{1};
+
 % Choose default command line output for interfazAproximacionLineal
 handles.output = hObject;
 
-% Obtengo handles
-
-tablaDatos = handles.sumatoriasTable;
-tablaSumas = handles.sumatoriasResultadosTable;
-
-tablaEcuaciones = handles.ecuacionesTable;
-
-graficoAproximacion = handles.grafico;
-
-% Lleno las tablas con los datos.
-
-set(tablaDatos, 'Data', tablaLineal(getCoordenadasDePrueba));
-
-sumatoria = sumatoriaLineal(getCoordenadasDePrueba);
-
-set(tablaSumas, 'Data', sumatoria(1:6));
-
-set(tablaSumas, 'RowName', {'S'});
-
-% Lleno la tabla de ecuaciones.
-
-set(tablaEcuaciones, 'Data', ecuacionesLineales(getCoordenadasDePrueba));
-
-% Establece los ejes del objeto de la interfaz gráfica donde se van a
-% renderizar los gráficos.
-axes(graficoAproximacion);
-
-[m , b] = aproximacionLineal(getCoordenadasDePrueba);
-
-% Grafico en el eje después de obtener los coeficientes.
-graficarAproximacionLineal(m , b, getCoordenadasDePrueba);
-
 % Update handles structure
 guidata(hObject, handles);
+
+set(handles.sumatoriasTable, 'Data', tablaLineal(handles.tabla.matriz'));
+sumatoria = sumatoriaLineal(handles.tabla.matriz');
+set(handles.sumatoriasResultadosTable, 'Data', sumatoria(1:6));
+set(handles.sumatoriasResultadosTable, 'RowName', {'S'});
+set(handles.ecuacionesTable, 'Data', ecuacionesLineales(handles.tabla.matriz'));
+axes(handles.graficoLineal);
+zoom on;
+[m , b] = aproximacionLineal(handles.tabla.matriz');
+graficarAproximacionLineal(m , b, handles.tabla.matriz');
 
 % UIWAIT makes interfazAproximacionLineal wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
@@ -121,5 +101,54 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+interfazAproximacionSeleccion(handles.tabla);
 close;
-interfazAproximacionSeleccion;
+
+
+% --- Executes during object creation, after setting all properties.
+function sumatoriasTable_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to sumatoriasTable (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+
+% --- Executes during object creation, after setting all properties.
+function sumatoriasResultadosTable_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to sumatoriasResultadosTable (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+
+% --- Executes during object creation, after setting all properties.
+function ecuacionesTable_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to ecuacionesTable (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+
+
+% --- Executes during object creation, after setting all properties.
+function graficoLineal_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to graficoLineal (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: place code in OpeningFcn to populate graficoLineal
+
+
+% --- Executes when user attempts to close figure1.
+function figure1_CloseRequestFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: delete(hObject) closes the figure
+delete(hObject);
+interfazAproximacionSeleccion(handles.tabla);
+
+
+% --- Executes during object deletion, before destroying properties.
+function sumatoriasResultadosTable_DeleteFcn(hObject, eventdata, handles)
+% hObject    handle to sumatoriasResultadosTable (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)

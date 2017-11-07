@@ -9,10 +9,10 @@ function graficarAproximacionLineal(m, b, X)
 
     %Extremos a considerar para el gráfico
     
-    e1=min(X(1,:))-2;
-    e2=max(X(1,:))+2;
-    e3=min(X(2,:))-2;
-    e4=max(X(2,:))+2;
+    e1=min(X(1,:))-10;
+    e2=max(X(1,:))+10;
+    e3=min(X(2,:))-10;
+    e4=max(X(2,:))+10;
 
     %Grafico de la recta obtenida
     
@@ -25,26 +25,14 @@ function graficarAproximacionLineal(m, b, X)
     %aproximante: con los dos últimos parámetros de la función title y
     %xlabel, se asigna el formato cheto a las funciones.
     
-    title(['Polinomio aproximante: ' mostrarFuncion(m, b)], 'interpreter', 'latex');
+    title(mostrarFuncion(m, b));
     
-    xlabel(['Error: ' num2str(calcularErrorLineal([m, b], X))], 'interpreter', 'latex');
+    xlabel(['Error: ' num2str(calcularErrorLineal([m, b], X))]);
 
 end
 
 function [funcion] = mostrarFuncion(pendiente, ordenada)    
-    %Defino la variable de la aproximación lineal para representarla
-    %simbólicamente
-    syms x;
     
-    
-    %Defino los coeficientes de la aproximación para representarlos
-    %simbólicamentes, estableciendo qué tipo de número quiero porque si no,
-    %sólo muestra números racionales.
-    m = sym(pendiente, 'd');
-    b = sym(ordenada, 'd');
-    
-    %Convierto la expresión formada por los símbolos definidos con sym al
-    %formato LaTex para poder representarlos de forma fachera.
-    funcion = latex(m*x + b);
+    funcion = ['Polinomio aproximante: ' num2str(pendiente) 'x + ' num2str(ordenada)];
     
 end

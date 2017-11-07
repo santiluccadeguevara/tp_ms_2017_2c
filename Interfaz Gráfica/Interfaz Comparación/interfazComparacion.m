@@ -22,7 +22,7 @@ function varargout = interfazComparacion(varargin)
 
 % Edit the above text to modify the response to help interfazComparacion
 
-% Last Modified by GUIDE v2.5 05-Nov-2017 22:16:04
+% Last Modified by GUIDE v2.5 07-Nov-2017 02:00:58
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -52,6 +52,8 @@ function interfazComparacion_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to interfazComparacion (see VARARGIN)
 
+handles.tabla=varargin{1};
+
 % Choose default command line output for interfazComparacion
 handles.output = hObject;
 
@@ -61,6 +63,46 @@ guidata(hObject, handles);
 % UIWAIT makes interfazComparacion wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
+[tabla, resultados] = dameLaTabla(handles.tabla.matriz');
+set(handles.uitable1, 'Data', tabla);
+[tabla, resultados] = dameLaTabla(handles.tabla.matriz');
+set(handles.uitable3, 'Data', resultados);
+[valor, indice] = obtenerMejorAproximacion(handles.tabla.matriz');
+switch indice
+    case 1
+        set(handles.text7, 'String', 'Aproximación lineal');
+    case 2
+        set(handles.text7, 'String', 'Aproximación parabólica');
+    case 3
+        set(handles.text7, 'String', 'Aproximación exponencial');
+    case 4
+        set(handles.text7, 'String', 'Aproximación parabólica');
+    case 5
+        set(handles.text7, 'String', 'Aproximación hiperbólica');
+    otherwise
+        set(handles.text7, 'String', 'Indeterminado');
+end
+
+axes(handles.axes1);
+zoom on;
+[valor, indice] = obtenerMejorAproximacion(handles.tabla.matriz');
+switch indice
+    case 1
+        [m , b] = aproximacionLineal(handles.tabla.matriz');
+        graficarAproximacionLineal(m, b, handles.tabla.matriz');
+    case 2
+        [a , b, c] = aproximacionCuadratica(handles.tabla.matriz');
+        graficarAproximacionCuadratica(a, b, c, handles.tabla.matriz');
+    case 3
+        [a , b] = aproximacionExponencial(handles.tabla.matriz');
+        graficarAproximacionExponencial(a, b, handles.tabla.matriz');
+    case 4
+        [a , b] = aproximacionPotencial(handles.tabla.matriz');
+        graficarAproximacionPotencial(a, b, handles.tabla.matriz');
+    case 5
+        [a , b] = aproximacionHiperbolica(handles.tabla.matriz');
+        graficarAproximacionHiperbolica(a, b, handles.tabla.matriz');
+end
 
 % --- Outputs from this function are returned to the command line.
 function varargout = interfazComparacion_OutputFcn(hObject, eventdata, handles) 
@@ -72,11 +114,41 @@ function varargout = interfazComparacion_OutputFcn(hObject, eventdata, handles)
 % Get default command line output from handles structure
 varargout{1} = handles.output;
 
-function miFunction = asdasd.dameLaTabla(datos[]);
+% --- Executes on button press in pushbutton1.
+function pushbutton1_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+close all;
+wInterfazPrincipal(handles.tabla);
+
+% --- Executes during object creation, after setting all properties.
+function figure1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+movegui('center');
 
 % --- Executes during object creation, after setting all properties.
 function uitable1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', getTablaDePrueba);
+
+% --- Executes during object creation, after setting all properties.
+function uitable3_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to uitable3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% --- Executes during object creation, after setting all properties.
+function text7_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to text7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+   
+% --- Executes during object creation, after setting all properties.
+function axes1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to axes1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
