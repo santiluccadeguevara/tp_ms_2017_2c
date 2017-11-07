@@ -1,35 +1,35 @@
-function varargout = interfazAproximacionCuadratica(varargin)
-% INTERFAZAPROXIMACIONCUADRATICA MATLAB code for interfazAproximacionCuadratica.fig
-%      INTERFAZAPROXIMACIONCUADRATICA, by itself, creates a new INTERFAZAPROXIMACIONCUADRATICA or raises the existing
+function varargout = interfazAproximacionPotencial(varargin)
+% INTERFAZAPROXIMACIONPOTENCIAL MATLAB code for interfazAproximacionPotencial.fig
+%      INTERFAZAPROXIMACIONPOTENCIAL, by itself, creates a new INTERFAZAPROXIMACIONPOTENCIAL or raises the existing
 %      singleton*.
 %
-%      H = INTERFAZAPROXIMACIONCUADRATICA returns the handle to a new INTERFAZAPROXIMACIONCUADRATICA or the handle to
+%      H = INTERFAZAPROXIMACIONPOTENCIAL returns the handle to a new INTERFAZAPROXIMACIONPOTENCIAL or the handle to
 %      the existing singleton*.
 %
-%      INTERFAZAPROXIMACIONCUADRATICA('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in INTERFAZAPROXIMACIONCUADRATICA.M with the given input arguments.
+%      INTERFAZAPROXIMACIONPOTENCIAL('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in INTERFAZAPROXIMACIONPOTENCIAL.M with the given input arguments.
 %
-%      INTERFAZAPROXIMACIONCUADRATICA('Property','Value',...) creates a new INTERFAZAPROXIMACIONCUADRATICA or raises the
+%      INTERFAZAPROXIMACIONPOTENCIAL('Property','Value',...) creates a new INTERFAZAPROXIMACIONPOTENCIAL or raises the
 %      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before interfazAproximacionCuadratica_OpeningFcn gets called.  An
+%      applied to the GUI before interfazAproximacionPotencial_OpeningFcn gets called.  An
 %      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to interfazAproximacionCuadratica_OpeningFcn via varargin.
+%      stop.  All inputs are passed to interfazAproximacionPotencial_OpeningFcn via varargin.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
 
-% Edit the above text to modify the response to help interfazAproximacionCuadratica
+% Edit the above text to modify the response to help interfazAproximacionPotencial
 
-% Last Modified by GUIDE v2.5 06-Nov-2017 18:49:14
+% Last Modified by GUIDE v2.5 06-Nov-2017 23:19:17
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @interfazAproximacionCuadratica_OpeningFcn, ...
-                   'gui_OutputFcn',  @interfazAproximacionCuadratica_OutputFcn, ...
+                   'gui_OpeningFcn', @interfazAproximacionPotencial_OpeningFcn, ...
+                   'gui_OutputFcn',  @interfazAproximacionPotencial_OutputFcn, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
@@ -44,26 +44,26 @@ end
 % End initialization code - DO NOT EDIT
 
 
-% --- Executes just before interfazAproximacionCuadratica is made visible.
-function interfazAproximacionCuadratica_OpeningFcn(hObject, eventdata, handles, varargin)
+% --- Executes just before interfazAproximacionPotencial is made visible.
+function interfazAproximacionPotencial_OpeningFcn(hObject, eventdata, handles, varargin)
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to interfazAproximacionCuadratica (see VARARGIN)
+% varargin   command line arguments to interfazAproximacionPotencial (see VARARGIN)
 
-% Choose default command line output for interfazAproximacionCuadratica
+% Choose default command line output for interfazAproximacionPotencial
 handles.output = hObject;
 
 % Update handles structure
 guidata(hObject, handles);
 
-% UIWAIT makes interfazAproximacionCuadratica wait for user response (see UIRESUME)
+% UIWAIT makes interfazAproximacionPotencial wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = interfazAproximacionCuadratica_OutputFcn(hObject, eventdata, handles) 
+function varargout = interfazAproximacionPotencial_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -81,13 +81,20 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 interfazAproximacionSeleccion;
 close;
 
+% --- Executes during object creation, after setting all properties.
+function figure1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+movegui('center');
+
 
 % --- Executes during object creation, after setting all properties.
 function uitable1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', tablaCuadratica(getCoordenadasDePrueba));
+set(hObject, 'Data', tablaPotencial(getCoordenadasDePrueba));
 
 
 % --- Executes during object creation, after setting all properties.
@@ -95,9 +102,9 @@ function uitable2_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-sumatoria = sumatoriaCuadratica(getCoordenadasDePrueba);
+sumatoria = sumatoriaPotencial(getCoordenadasDePrueba);
 
-set(hObject, 'Data', sumatoria(2:10));
+set(hObject, 'Data', sumatoria(2:9));
 
 set(hObject, 'RowName', {'S'});
 
@@ -107,7 +114,7 @@ function uitable3_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', ecuacionesCuadraticas(getCoordenadasDePrueba));
+set(hObject, 'Data', ecuacionesPotenciales(getCoordenadasDePrueba));
 
 
 % --- Executes during object creation, after setting all properties.
@@ -117,19 +124,13 @@ function axes2_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Hint: place code in OpeningFcn to populate axes2
+% Establece los ejes del objeto de la interfaz gráfica donde se van a
+% renderizar los gráficos.
 axes(hObject);
 
 zoom on;
 
-[a , b, c] = aproximacionCuadratica(getCoordenadasDePrueba);
+[m , b] = aproximacionPotencial(getCoordenadasDePrueba);
 
 % Grafico en el eje después de obtener los coeficientes.
-graficarAproximacionCuadratica(a, b, c, getCoordenadasDePrueba);
-
-
-% --- Executes during object creation, after setting all properties.
-function figure1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to figure1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-movegui('center');
+graficarAproximacionPotencial(m , b, getCoordenadasDePrueba);

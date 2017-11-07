@@ -1,27 +1,26 @@
-function [tabla] = tablaCuadratica(datos)
+function [tabla] = tablaPotencial(datos)
 
     xi = datos(1,:).';
     yi = datos(2,:).';
-    xi2 = xi.^2;
-    xi3 = xi.^3;
-    xi4 = xi.^4;
-    xiyi = xi.*yi;
-    xi2yi = xi2.*yi;
+    lnxi = log(xi);
+    lnyi = log(yi);
+    lnxilnyi = lnxi.*lnyi;
+    lnxi2 = lnxi.^2;
     p = polinomio(datos);
     e = errores(datos, p);
     
-    tabla = [ xi yi xi2 xi3 xi4 xiyi xi2yi p e];
+    tabla = [ xi yi lnxi lnyi lnxilnyi lnxi2 p e];
 end
 
 function [p] = polinomio(datos)
 
-    [a , b, c] = aproximacionCuadratica(datos);
+    [a , b] = aproximacionPotencial(datos);
 
     matriz = datos';
     
     xi = matriz(:,1);
 
-    p = a .* (xi.^2) + b .* xi + c;
+    p = b .* xi.^a;
     
 end
 

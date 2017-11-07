@@ -5,7 +5,7 @@ function [tabla] = tablaLineal(datos)
     xi2 = xi.^2;
     xiyi = xi.*yi;
     p = polinomio(datos);
-    e = errores(datos);
+    e = errores(datos, p);
     
     tabla = [ xi yi xi2 xiyi p e];
 end
@@ -22,15 +22,13 @@ function [p] = polinomio(datos)
     
 end
 
-function [e] = errores(datos)
-
-    p = polinomio(datos);
+function [e] = errores(datos, polinomio)
     
     matriz = datos';
     
     yi = matriz(:,2);
     
-    e = calcularColumnaDeError(p, yi);
+    e = calcularColumnaDeError(polinomio, yi);
 
 end
 

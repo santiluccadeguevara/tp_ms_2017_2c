@@ -17,6 +17,14 @@ function graficarAproximacionPotencial(a, b, X)
     fplot(@(x) b*(x).^a ,'m')
     xlim([e1 e2]);
     ylim([e3 e4]);
-    title('Aproximación potencial por mínimos cuadrados');
+    title(mostrarFuncion(a, b));
+    
+    xlabel(['Error: ' num2str(calcularErrorPotencial([a, b], X))]);
 
+end
+
+function [funcion] = mostrarFuncion(a, b)    
+    
+    funcion = ['Polinomio aproximante: ' num2str(b) 'x^{' num2str(a) '}'];
+    
 end
