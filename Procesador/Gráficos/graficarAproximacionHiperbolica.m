@@ -17,6 +17,15 @@ function graficarAproximacionHiperbolica(a, b, X)
     fplot(@(x) (a./(x+b)),'c')
     xlim([e1 e2]);
     ylim([e3 e4]);
-    title('Aproximación hiperbólica por mínimos cuadrados');
+    
+    title(mostrarFuncion(a, b));
+    
+    xlabel(['Error: ' num2str(calcularErrorHiperbolica([a, b], X))]);
+
+end
+
+function [funcion] = mostrarFuncion(a, b)    
+    
+    funcion = ['Polinomio aproximante: ^{' num2str(a) '}/_{x + ' num2str(b) '}'];
     
 end

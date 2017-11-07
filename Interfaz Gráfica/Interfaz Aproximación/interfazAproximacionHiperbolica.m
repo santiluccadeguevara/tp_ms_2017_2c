@@ -22,7 +22,7 @@ function varargout = interfazAproximacionHiperbolica(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionHiperbolica
 
-% Last Modified by GUIDE v2.5 07-Nov-2017 00:13:09
+% Last Modified by GUIDE v2.5 07-Nov-2017 00:31:56
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -78,3 +78,58 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+close;
+interfazAproximacionSeleccion;
+
+% --- Executes during object creation, after setting all properties.
+function figure1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+% Mueve la ventana a otra parte.
+movegui('center');
+
+
+% --- Executes during object creation, after setting all properties.
+function uitable1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to uitable1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+set(hObject, 'Data', tablaHiperbolica(getCoordenadasDePrueba));
+
+
+% --- Executes during object creation, after setting all properties.
+function uitable2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to uitable2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+sumatoria = sumatoriaHiperbolica(getCoordenadasDePrueba);
+
+set(hObject, 'Data', sumatoria(2:8));
+
+set(hObject, 'RowName', {'S'});
+
+
+% --- Executes during object creation, after setting all properties.
+function uitable3_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to uitable3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+set(hObject, 'Data', ecuacionesHiperbolicas(getCoordenadasDePrueba));
+
+
+% --- Executes during object creation, after setting all properties.
+function axes2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to axes2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: place code in OpeningFcn to populate axes2
+axes(hObject);
+
+zoom on;
+
+[m , b] = aproximacionHiperbolica(getCoordenadasDePrueba);
+
+% Grafico en el eje después de obtener los coeficientes.
+graficarAproximacionHiperbolica(m, b, getCoordenadasDePrueba);
