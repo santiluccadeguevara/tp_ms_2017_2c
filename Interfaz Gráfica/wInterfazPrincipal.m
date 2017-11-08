@@ -106,7 +106,7 @@ function btnIngresarDatos_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 tabla=handles.tabla;
 
-if tabla.decimalesDefinidos==false
+if tabla.decimalesDefinidos==false||isempty(tabla.matriz)
     wDefinirDecimales(tabla);
 else
     wIngresarDatos(tabla);
