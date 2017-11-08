@@ -11,4 +11,3 @@ function [valor, indiceMejorAproximacion] = obtenerMejorAproximacion(datosParali
     [valor, indiceMejorAproximacion] = min(errores);
     
 end
-

@@ -52,6 +52,8 @@ function interfazComparacion_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to interfazComparacion (see VARARGIN)
 
+handles.tabla=varargin{1};
+
 % Choose default command line output for interfazComparacion
 handles.output = hObject;
 
@@ -61,6 +63,42 @@ guidata(hObject, handles);
 % UIWAIT makes interfazComparacion wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
+[tabla, resultados] = dameLaTabla(handles.tabla.matriz');
+
+set(handles.uitable1, 'Data', tabla);
+
+set(handles.uitable3, 'Data', resultados);
+
+[valor, indice] = obtenerMejorAproximacion(handles.tabla.matriz');
+
+axes(handles.axes1);
+
+zoom on;
+
+switch indice
+    case 1
+        set(handles.text7, 'String', 'Aproximación lineal');
+        [m , b] = aproximacionLineal(handles.tabla.matriz');
+        graficarAproximacionLineal(m, b, handles.tabla.matriz');
+    case 2
+        set(handles.text7, 'String', 'Aproximación parabólica');
+        [a , b, c] = aproximacionCuadratica(handles.tabla.matriz');
+        graficarAproximacionCuadratica(a, b, c, handles.tabla.matriz');
+    case 3
+        set(handles.text7, 'String', 'Aproximación exponencial');
+        [a , b] = aproximacionExponencial(handles.tabla.matriz');
+        graficarAproximacionExponencial(a, b, handles.tabla.matriz');
+    case 4
+        set(handles.text7, 'String', 'Aproximación potencial');
+        [a , b] = aproximacionPotencial(handles.tabla.matriz');
+        graficarAproximacionPotencial(a, b, handles.tabla.matriz');
+    case 5
+        set(handles.text7, 'String', 'Aproximación hiperbólica');
+        [a , b] = aproximacionHiperbolica(handles.tabla.matriz');
+        graficarAproximacionHiperbolica(a, b, handles.tabla.matriz');
+    otherwise
+        set(handles.text7, 'String', 'Indeterminado');
+end
 
 % --- Outputs from this function are returned to the command line.
 function varargout = interfazComparacion_OutputFcn(hObject, eventdata, handles) 
@@ -72,14 +110,13 @@ function varargout = interfazComparacion_OutputFcn(hObject, eventdata, handles)
 % Get default command line output from handles structure
 varargout{1} = handles.output;
 
-
 % --- Executes on button press in pushbutton1.
 function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 close all;
-interfazPrincipal(handles.tabla);
+wInterfazPrincipal(handles.tabla);
 
 % --- Executes during object creation, after setting all properties.
 function figure1_CreateFcn(hObject, eventdata, handles)
@@ -93,100 +130,21 @@ function uitable1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-[tabla, resultados] = dameLaTabla(getCoordenadasDePrueba);
-
-set(hObject, 'Data', tabla);
-
 
 % --- Executes during object creation, after setting all properties.
 function uitable3_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-[tabla, resultados] = dameLaTabla(getCoordenadasDePrueba);
-
-set(hObject, 'Data', resultados);
-
 
 % --- Executes during object creation, after setting all properties.
 function text7_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to text7 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-[valor, indice] = obtenerMejorAproximacion(getCoordenadasDePrueba)
-
-switch indice
-    
-    case 1
-        
-        set(hObject, 'String', 'Aproximación lineal');
-        
-    case 2
-        
-        set(hObject, 'String', 'Aproximación parabólica');
-        
-    case 3
-        
-        set(hObject, 'String', 'Aproximación exponencial');
-        
-    case 4
-        
-        set(hObject, 'String', 'Aproximación parabólica');
-        
-    case 5
-        
-        set(hObject, 'String', 'Aproximación hiperbólica');
-        
-    otherwise
-        
-        set(hObject, 'String', 'Indeterminado');
-end
-    
-
-
+   
 % --- Executes during object creation, after setting all properties.
 function axes1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to axes1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-
-% Hint: place code in OpeningFcn to populate axes1
-axes(hObject);
-
-zoom on;
-
-[valor, indice] = obtenerMejorAproximacion(getCoordenadasDePrueba)
-
-switch indice
-    
-    case 1
-        
-        [m , b] = aproximacionLineal(getCoordenadasDePrueba);
-        
-        graficarAproximacionLineal(m, b, getCoordenadasDePrueba);
-        
-    case 2
-        
-        [a , b, c] = aproximacionCuadratica(getCoordenadasDePrueba);
-        
-        graficarAproximacionCuadratica(a, b, c, getCoordenadasDePrueba);
-        
-    case 3
-        
-        [a , b] = aproximacionExponencial(getCoordenadasDePrueba);
-        
-        graficarAproximacionExponencial(a, b, getCoordenadasDePrueba);
-        
-    case 4
-        
-        [a , b] = aproximacionPotencial(getCoordenadasDePrueba);
-        
-        graficarAproximacionPotencial(a, b, getCoordenadasDePrueba);
-        
-    case 5
-        
-        [a , b] = aproximacionHiperbolica(getCoordenadasDePrueba);
-        
-        graficarAproximacionHiperbolica(a, b, getCoordenadasDePrueba);
-        
-end

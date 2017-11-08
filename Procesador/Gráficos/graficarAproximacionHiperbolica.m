@@ -27,5 +27,5 @@ end
 function [funcion] = mostrarFuncion(a, b)    
     
     funcion = ['Polinomio aproximante: ^{' num2str(a) '}/_{x + ' num2str(b) '}'];
-    
+
 end

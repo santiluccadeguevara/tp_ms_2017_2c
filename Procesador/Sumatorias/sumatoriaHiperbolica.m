@@ -5,5 +5,5 @@ function [sumatorias] = sumatoriaHiperbolica(datos)
     tabla = tablaHiperbolica(datos);
     
     sumatorias = [ n sum(tabla)];
-    
+
 end

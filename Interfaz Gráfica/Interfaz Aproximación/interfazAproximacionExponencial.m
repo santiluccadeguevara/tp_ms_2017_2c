@@ -22,7 +22,7 @@ function varargout = interfazAproximacionExponencial(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionExponencial
 
-% Last Modified by GUIDE v2.5 06-Nov-2017 19:13:53
+% Last Modified by GUIDE v2.5 07-Nov-2017 11:06:10
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -52,6 +52,8 @@ function interfazAproximacionExponencial_OpeningFcn(hObject, eventdata, handles,
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to interfazAproximacionExponencial (see VARARGIN)
 
+handles.tabla=varargin{1};
+
 % Choose default command line output for interfazAproximacionExponencial
 handles.output = hObject;
 
@@ -61,6 +63,15 @@ guidata(hObject, handles);
 % UIWAIT makes interfazAproximacionExponencial wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
+set(handles.uitable1, 'Data', tablaExponencial(handles.tabla.matriz'));
+sumatoria = sumatoriaExponencial(handles.tabla.matriz');
+set(handles.uitable2, 'Data', sumatoria(2:8));
+set(handles.uitable2, 'RowName', {'S'});
+set(handles.uitable3, 'Data', ecuacionesExponenciales(handles.tabla.matriz'));
+axes(handles.axes2);
+zoom on;
+[m , b] = aproximacionExponencial(handles.tabla.matriz');
+graficarAproximacionExponencial(m, b, handles.tabla.matriz');
 
 % --- Outputs from this function are returned to the command line.
 function varargout = interfazAproximacionExponencial_OutputFcn(hObject, eventdata, handles) 
@@ -78,15 +89,15 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-interfazAproximacionSeleccion;
 close;
+interfazAproximacionSeleccion(handles.tabla);
 
 % --- Executes during object creation, after setting all properties.
 function uitable1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', tablaExponencial(getCoordenadasDePrueba));
+
 
 
 % --- Executes during object creation, after setting all properties.
@@ -94,11 +105,6 @@ function uitable2_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-sumatoria = sumatoriaExponencial(getCoordenadasDePrueba);
-
-set(hObject, 'Data', sumatoria(2:8));
-
-set(hObject, 'RowName', {'S'});
 
 
 % --- Executes during object creation, after setting all properties.
@@ -106,7 +112,6 @@ function uitable3_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', ecuacionesExponenciales(getCoordenadasDePrueba));
 
 
 % --- Executes during object creation, after setting all properties.
@@ -116,14 +121,7 @@ function axes2_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Hint: place code in OpeningFcn to populate axes2
-axes(hObject);
 
-zoom on;
-
-[m , b] = aproximacionExponencial(getCoordenadasDePrueba);
-
-% Grafico en el eje después de obtener los coeficientes.
-graficarAproximacionExponencial(m, b, getCoordenadasDePrueba);
 
 
 % --- Executes during object creation, after setting all properties.
@@ -132,3 +130,14 @@ function figure1_CreateFcn(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 movegui('center');
+
+
+% --- Executes when user attempts to close figure1.
+function figure1_CloseRequestFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: delete(hObject) closes the figure
+delete(hObject);
+interfazAproximacionSeleccion(handles.tabla);

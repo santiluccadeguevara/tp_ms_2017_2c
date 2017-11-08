@@ -31,6 +31,3 @@ function [e] = errores(datos, polinomio)
     e = calcularColumnaDeError(polinomio, yi);
 
 end
-
-
-

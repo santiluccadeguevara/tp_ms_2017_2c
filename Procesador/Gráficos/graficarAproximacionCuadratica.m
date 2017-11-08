@@ -28,5 +28,5 @@ end
 function [funcion] = mostrarFuncion(a, b, c) 
 
     funcion = ['Polinomio aproximante: ' num2str(a) 'x^{2} + ' num2str(b) 'x +' num2str(c)];
-    
+
 end

@@ -22,7 +22,7 @@ function varargout = interfazAproximacionPotencial(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionPotencial
 
-% Last Modified by GUIDE v2.5 06-Nov-2017 23:19:17
+% Last Modified by GUIDE v2.5 07-Nov-2017 11:06:45
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -52,6 +52,8 @@ function interfazAproximacionPotencial_OpeningFcn(hObject, eventdata, handles, v
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to interfazAproximacionPotencial (see VARARGIN)
 
+handles.tabla=varargin{1};
+
 % Choose default command line output for interfazAproximacionPotencial
 handles.output = hObject;
 
@@ -59,7 +61,17 @@ handles.output = hObject;
 guidata(hObject, handles);
 
 % UIWAIT makes interfazAproximacionPotencial wait for user response (see UIRESUME)
-% uiwait(handles.figure1);
+% uiwait(handles.figure1)
+
+set(handles.uitable1, 'Data', tablaPotencial(handles.tabla.matriz'));
+sumatoria = sumatoriaPotencial(handles.tabla.matriz');
+set(handles.uitable2, 'Data', sumatoria(2:9));
+set(handles.uitable2, 'RowName', {'S'});
+set(handles.uitable3, 'Data', ecuacionesPotenciales(handles.tabla.matriz'));
+axes(handles.axes2);
+zoom on;
+[m , b] = aproximacionPotencial(handles.tabla.matriz');
+graficarAproximacionPotencial(m , b, handles.tabla.matriz');
 
 
 % --- Outputs from this function are returned to the command line.
@@ -78,8 +90,8 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-interfazAproximacionSeleccion;
 close;
+interfazAproximacionSeleccion(handles.tabla);
 
 % --- Executes during object creation, after setting all properties.
 function figure1_CreateFcn(hObject, eventdata, handles)
@@ -94,7 +106,6 @@ function uitable1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', tablaPotencial(getCoordenadasDePrueba));
 
 
 % --- Executes during object creation, after setting all properties.
@@ -102,11 +113,6 @@ function uitable2_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-sumatoria = sumatoriaPotencial(getCoordenadasDePrueba);
-
-set(hObject, 'Data', sumatoria(2:9));
-
-set(hObject, 'RowName', {'S'});
 
 
 % --- Executes during object creation, after setting all properties.
@@ -114,7 +120,6 @@ function uitable3_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', ecuacionesPotenciales(getCoordenadasDePrueba));
 
 
 % --- Executes during object creation, after setting all properties.
@@ -124,13 +129,14 @@ function axes2_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Hint: place code in OpeningFcn to populate axes2
-% Establece los ejes del objeto de la interfaz gráfica donde se van a
-% renderizar los gráficos.
-axes(hObject);
 
-zoom on;
 
-[m , b] = aproximacionPotencial(getCoordenadasDePrueba);
+% --- Executes when user attempts to close figure1.
+function figure1_CloseRequestFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
-% Grafico en el eje después de obtener los coeficientes.
-graficarAproximacionPotencial(m , b, getCoordenadasDePrueba);
+% Hint: delete(hObject) closes the figure
+delete(hObject);
+interfazAproximacionSeleccion(handles.tabla);

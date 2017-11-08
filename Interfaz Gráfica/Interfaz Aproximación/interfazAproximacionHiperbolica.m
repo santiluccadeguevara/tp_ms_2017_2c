@@ -22,7 +22,7 @@ function varargout = interfazAproximacionHiperbolica(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionHiperbolica
 
-% Last Modified by GUIDE v2.5 07-Nov-2017 00:31:56
+% Last Modified by GUIDE v2.5 07-Nov-2017 11:06:23
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -52,6 +52,8 @@ function interfazAproximacionHiperbolica_OpeningFcn(hObject, eventdata, handles,
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to interfazAproximacionHiperbolica (see VARARGIN)
 
+handles.tabla=varargin{1};
+
 % Choose default command line output for interfazAproximacionHiperbolica
 handles.output = hObject;
 
@@ -60,6 +62,16 @@ guidata(hObject, handles);
 
 % UIWAIT makes interfazAproximacionHiperbolica wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
+
+set(handles.uitable1, 'Data', tablaHiperbolica(handles.tabla.matriz'));
+sumatoria = sumatoriaHiperbolica(handles.tabla.matriz');
+set(handles.uitable2, 'Data', sumatoria(2:8));
+set(handles.uitable2, 'RowName', {'S'});
+set(handles.uitable3, 'Data', ecuacionesHiperbolicas(handles.tabla.matriz'));
+axes(handles.axes2);
+zoom on;
+[m , b] = aproximacionHiperbolica(handles.tabla.matriz');
+graficarAproximacionHiperbolica(m, b, handles.tabla.matriz');
 
 
 % --- Outputs from this function are returned to the command line.
@@ -79,7 +91,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 close;
-interfazAproximacionSeleccion;
+interfazAproximacionSeleccion(handles.tabla);
 
 % --- Executes during object creation, after setting all properties.
 function figure1_CreateFcn(hObject, eventdata, handles)
@@ -95,7 +107,6 @@ function uitable1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', tablaHiperbolica(getCoordenadasDePrueba));
 
 
 % --- Executes during object creation, after setting all properties.
@@ -103,11 +114,6 @@ function uitable2_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-sumatoria = sumatoriaHiperbolica(getCoordenadasDePrueba);
-
-set(hObject, 'Data', sumatoria(2:8));
-
-set(hObject, 'RowName', {'S'});
 
 
 % --- Executes during object creation, after setting all properties.
@@ -115,7 +121,6 @@ function uitable3_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uitable3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-set(hObject, 'Data', ecuacionesHiperbolicas(getCoordenadasDePrueba));
 
 
 % --- Executes during object creation, after setting all properties.
@@ -125,11 +130,14 @@ function axes2_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Hint: place code in OpeningFcn to populate axes2
-axes(hObject);
 
-zoom on;
 
-[m , b] = aproximacionHiperbolica(getCoordenadasDePrueba);
+% --- Executes when user attempts to close figure1.
+function figure1_CloseRequestFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
-% Grafico en el eje después de obtener los coeficientes.
-graficarAproximacionHiperbolica(m, b, getCoordenadasDePrueba);
+% Hint: delete(hObject) closes the figure
+delete(hObject);
+interfazAproximacionSeleccion(handles.tabla);

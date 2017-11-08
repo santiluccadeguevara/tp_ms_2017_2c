@@ -5,5 +5,5 @@ function [sumatorias] = sumatoriaLineal(datos)
     tabla = tablaLineal(datos);
     
     sumatorias = [ n sum(tabla)];
-    
+
 end

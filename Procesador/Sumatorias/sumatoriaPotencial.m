@@ -7,4 +7,3 @@ function [sumatorias] = sumatoriaPotencial(datos)
     sumatorias = [ n sum(tabla)];
     
 end
-

@@ -82,8 +82,7 @@ function volverAInicioButton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 close all;
-
-interfazPrincipal(handles.tabla);
+wInterfazPrincipal(handles.tabla);
 
 
 % --- Executes on button press in linealButton.
