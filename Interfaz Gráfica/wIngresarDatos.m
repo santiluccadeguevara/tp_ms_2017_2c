@@ -232,7 +232,7 @@ elseif ((contains(fila,','))||(contains(fila,'.')))
 else
     tabla=wConfirmacionEliminar(fila,tabla);
     set(handles.tbValores, 'data', tabla.matriz);
-    set(handles.txtEstadoIngresarDatos,'String','Par ordenado correctamente.');
+    set(handles.txtEstadoIngresarDatos,'String','Par ordenado eliminado correctamente.');
     set(handles.tbxEditar,'String','');
     handles.tabla=tabla;
 end

@@ -22,7 +22,7 @@ function varargout = interfazAproximacionExponencial(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionExponencial
 
-% Last Modified by GUIDE v2.5 07-Nov-2017 11:06:10
+% Last Modified by GUIDE v2.5 08-Nov-2017 09:18:54
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
