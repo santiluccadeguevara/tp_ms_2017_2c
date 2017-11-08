@@ -64,6 +64,12 @@ guidata(hObject, handles);
 % UIWAIT makes interfazAproximacionSeleccion wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
+if handles.tabla.largo<3
+    set(handles.parabolicaButton,'Enable','off');
+else
+    set(handles.parabolicaButton,'Enable','on');
+end
+
 
 % --- Outputs from this function are returned to the command line.
 function varargout = interfazAproximacionSeleccion_OutputFcn(hObject, eventdata, handles)
