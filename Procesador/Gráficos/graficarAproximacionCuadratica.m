@@ -1,5 +1,4 @@
 function graficarAproximacionCuadratica(a, b, c, X)
-    digits(4)
 
     for i=1:length(X(1,:)) 
         hold on; 

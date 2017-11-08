@@ -1,6 +1,4 @@
 function graficarAproximacionLineal(m, b, X)
-    %Trunca la cantidad de decimales que se muestran por pantalla    
-    digits(4);
 
     for i=1:length(X(1,:))
         hold on; 
