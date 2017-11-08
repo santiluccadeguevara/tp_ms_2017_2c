@@ -123,6 +123,8 @@ function axes2_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Hint: place code in OpeningFcn to populate axes2
+title('', 'interpreter', 'latex');
+xlabel('', 'interpreter', 'latex');
 
 
 % --- Executes during object creation, after setting all properties.
