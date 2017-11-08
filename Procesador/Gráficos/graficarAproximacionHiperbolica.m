@@ -18,14 +18,20 @@ function graficarAproximacionHiperbolica(a, b, X)
     xlim([e1 e2]);
     ylim([e3 e4]);
     
-    title(mostrarFuncion(a, b));
+    title(mostrarFuncion(a, b), 'interpreter', 'latex');
     
-    xlabel(['Error: ' num2str(calcularErrorHiperbolica([a, b], X))]);
+    xlabel(mostrarError(a, b, X), 'interpreter', 'latex');
+    
+end
+
+function [funcion] = mostrarFuncion(a, b) 
+
+    funcion = ['Polinomio aproximante: $$\displaystyle\frac{' num2str(b) '}{x + ' num2str(a) '}$'];
 
 end
 
-function [funcion] = mostrarFuncion(a, b)    
-    
-    funcion = ['Polinomio aproximante: ^{' num2str(a) '}/_{x + ' num2str(b) '}'];
+function [error] = mostrarError(a, b, X)
+
+    error = ['Error: ' num2str(calcularErrorHiperbolica([a, b], X))];
 
 end

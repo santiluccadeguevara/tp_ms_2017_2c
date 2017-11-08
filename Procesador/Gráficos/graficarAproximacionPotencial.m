@@ -17,14 +17,20 @@ function graficarAproximacionPotencial(a, b, X)
     fplot(@(x) b*(x).^a ,'m')
     xlim([e1 e2]);
     ylim([e3 e4]);
-    title(mostrarFuncion(a, b));
+    title(mostrarFuncion(a, b), 'interpreter', 'latex');
     
-    xlabel(['Error: ' num2str(calcularErrorPotencial([a, b], X))]);
+    xlabel(mostrarError(a, b, X), 'interpreter', 'latex');
+    
+end
+
+function [funcion] = mostrarFuncion(a, b) 
+
+    funcion = ['Polinomio aproximante: $' num2str(b) 'x^{' num2str(a) '}$'];
 
 end
 
-function [funcion] = mostrarFuncion(a, b)    
-    
-    funcion = ['Polinomio aproximante: ' num2str(b) 'x^{' num2str(a) '}'];
-    
+function [error] = mostrarError(a, b, X)
+
+    error = ['Error: ' num2str(calcularErrorPotencial([a, b], X))];
+
 end

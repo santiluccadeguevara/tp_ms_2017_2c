@@ -19,14 +19,20 @@ function graficarAproximacionCuadratica(a, b, c, X)
     xlim([e1 e2]);
     ylim([e3 e4]);
     
-    title(mostrarFuncion(a, b, c));
+    title(mostrarFuncion(a, b, c), 'interpreter', 'latex');
     
-    xlabel(['Error: ' num2str(calcularErrorCuadratico([a, b, c], X))]);
+    xlabel(mostrarError(a, b, c, X), 'interpreter', 'latex');
     
 end
 
 function [funcion] = mostrarFuncion(a, b, c) 
 
-    funcion = ['Polinomio aproximante: ' num2str(a) 'x^{2} + ' num2str(b) 'x +' num2str(c)];
+    funcion = ['Polinomio aproximante: $' num2str(a) 'x^{2} + ' num2str(b) 'x + ' num2str(c) '$'];
+
+end
+
+function [error] = mostrarError(a, b, c, X)
+
+    error = ['Error: ' num2str(calcularErrorCuadratico([a, b, c], X))];
 
 end

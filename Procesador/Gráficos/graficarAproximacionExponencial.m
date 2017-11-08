@@ -18,14 +18,20 @@ function graficarAproximacionExponencial(a, b, X)
     xlim([e1 e2]);
     ylim([e3 e4]);
     
-    title(mostrarFuncion(a, b));
+    title(mostrarFuncion(a, b), 'interpreter', 'latex');
     
-    xlabel(['Error: ' num2str(calcularErrorExponencial([a, b], X))]);
+    xlabel(mostrarError(a, b, X), 'interpreter', 'latex');
+    
+end
+
+function [funcion] = mostrarFuncion(a, b) 
+
+    funcion = ['Polinomio aproximante: $' num2str(b) 'e^{' num2str(a) '}$'];
 
 end
 
-function [funcion] = mostrarFuncion(a, b)    
-    
-    funcion = ['Polinomio aproximante: ' num2str(b) 'e^{' num2str(a) 'x}'];
-    
+function [error] = mostrarError(a, b, X)
+
+    error = ['Error: ' num2str(calcularErrorExponencial([a, b], X))];
+
 end
