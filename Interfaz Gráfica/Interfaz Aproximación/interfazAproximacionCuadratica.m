@@ -22,7 +22,7 @@ function varargout = interfazAproximacionCuadratica(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionCuadratica
 
-% Last Modified by GUIDE v2.5 07-Nov-2017 11:05:52
+% Last Modified by GUIDE v2.5 08-Nov-2017 13:47:28
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -63,6 +63,7 @@ guidata(hObject, handles);
 % UIWAIT makes interfazAproximacionCuadratica wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
+movegui('center');
 set(handles.uitable1, 'Data', tablaCuadratica(handles.tabla.matriz'));
 sumatoria = sumatoriaCuadratica(handles.tabla.matriz');
 set(handles.uitable2, 'Data', sumatoria(2:10));
@@ -129,7 +130,6 @@ function figure1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to figure1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-movegui('center');
 
 
 % --- Executes when user attempts to close figure1.
@@ -141,3 +141,10 @@ function figure1_CloseRequestFcn(hObject, eventdata, handles)
 % Hint: delete(hObject) closes the figure
 delete(hObject);
 interfazAproximacionSeleccion(handles.tabla);
+
+
+% --- Executes during object creation, after setting all properties.
+function uipanel2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to uipanel2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
