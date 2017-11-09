@@ -148,3 +148,5 @@ function axes1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to axes1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
+title('', 'interpreter', 'latex');
+xlabel('', 'interpreter', 'latex');

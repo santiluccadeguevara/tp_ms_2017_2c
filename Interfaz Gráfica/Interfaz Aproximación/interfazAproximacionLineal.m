@@ -134,7 +134,8 @@ function graficoLineal_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Hint: place code in OpeningFcn to populate graficoLineal
-
+title('', 'interpreter', 'latex');
+xlabel('', 'interpreter', 'latex');
 
 % --- Executes when user attempts to close figure1.
 function figure1_CloseRequestFcn(hObject, eventdata, handles)
