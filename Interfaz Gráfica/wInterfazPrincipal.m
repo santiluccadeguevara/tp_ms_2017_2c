@@ -22,7 +22,7 @@ function varargout = wInterfazPrincipal(varargin)
 
 % Edit the above text to modify the response to help wInterfazPrincipal
 
-% Last Modified by GUIDE v2.5 30-Oct-2017 11:38:36
+% Last Modified by GUIDE v2.5 09-Nov-2017 20:28:03
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -86,6 +86,7 @@ guidata(hObject, handles);
 % uiwait(handles.figure1);
 
 movegui('center');
+uicontrol(handles.btnIngresarDatos);
 
 
 % --- Outputs from this function are returned to the command line.
@@ -138,3 +139,45 @@ function figure1_CloseRequestFcn(hObject, eventdata, handles)
 
 % Hint: delete(hObject) closes the figure
 delete(hObject);
+
+
+% --- Executes on key press with focus on btnIngresarDatos and none of its controls.
+function btnIngresarDatos_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnIngresarDatos (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnIngresarDatos_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on btnFinalizar and none of its controls.
+function btnFinalizar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnFinalizar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnFinalizar_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on btnComparar and none of its controls.
+function btnComparar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnComparar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnComparar_Callback(hObject, eventdata, handles);
+end

@@ -22,7 +22,7 @@ function varargout = interfazComparacion(varargin)
 
 % Edit the above text to modify the response to help interfazComparacion
 
-% Last Modified by GUIDE v2.5 07-Nov-2017 02:00:58
+% Last Modified by GUIDE v2.5 09-Nov-2017 20:53:34
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -100,6 +100,8 @@ switch indice
         set(handles.text7, 'String', 'Indeterminado');
 end
 
+uicontrol(handles.pushbutton1);
+
 % --- Outputs from this function are returned to the command line.
 function varargout = interfazComparacion_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
@@ -150,3 +152,17 @@ function axes1_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 title('', 'interpreter', 'latex');
 xlabel('', 'interpreter', 'latex');
+
+
+% --- Executes on key press with focus on pushbutton1 and none of its controls.
+function pushbutton1_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to pushbutton1 (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    pushbutton1_Callback(hObject, eventdata, handles);
+end

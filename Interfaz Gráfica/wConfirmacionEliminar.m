@@ -22,7 +22,7 @@ function varargout = wConfirmacionEliminar(varargin)
 
 % Edit the above text to modify the response to help wConfirmacionEliminar
 
-% Last Modified by GUIDE v2.5 30-Oct-2017 20:18:08
+% Last Modified by GUIDE v2.5 09-Nov-2017 20:38:27
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -117,8 +117,11 @@ IconCMap=questIconMap;
 
 set(handles.figure1, 'Colormap', IconCMap);
 
+
 % Make the GUI modal
 set(handles.figure1,'WindowStyle','modal')
+
+uicontrol(handles.btnCancelar);
 
 % UIWAIT makes wConfirmacionEliminar wait for user response (see UIRESUME)
 uiwait(handles.figure1);
@@ -208,3 +211,31 @@ end
 if isequal(get(hObject,'CurrentKey'),'return')
     uiresume(handles.figure1);
 end    
+
+
+% --- Executes on key press with focus on btnEliminar and none of its controls.
+function btnEliminar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnEliminar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnEliminar_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on btnCancelar and none of its controls.
+function btnCancelar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnCancelar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnCancelar_Callback(hObject, eventdata, handles);
+end

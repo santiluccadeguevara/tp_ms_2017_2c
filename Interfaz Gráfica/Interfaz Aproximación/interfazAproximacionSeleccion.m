@@ -22,7 +22,7 @@ function varargout = interfazAproximacionSeleccion(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionSeleccion
 
-% Last Modified by GUIDE v2.5 26-Oct-2017 00:40:10
+% Last Modified by GUIDE v2.5 09-Nov-2017 20:42:55
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -68,6 +68,7 @@ if handles.tabla.largo < 3
     set(handles.parabolicaButton,'BackgroundColor',[0.65 0.65 0.65]);
     set(handles.parabolicaButton,'Enable','off');
 end
+uicontrol(handles.linealButton);
 
 
 % --- Outputs from this function are returned to the command line.
@@ -142,3 +143,87 @@ function aproximacionFigure_CreateFcn(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 movegui('center');
+
+
+% --- Executes on key press with focus on linealButton and none of its controls.
+function linealButton_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to linealButton (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    linealButton_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on parabolicaButton and none of its controls.
+function parabolicaButton_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to parabolicaButton (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    parabolicaButton_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on exponencialButton and none of its controls.
+function exponencialButton_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to exponencialButton (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    exponencialButton_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on potencialButton and none of its controls.
+function potencialButton_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to potencialButton (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    potencialButton_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on hiperbolicaButton and none of its controls.
+function hiperbolicaButton_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to hiperbolicaButton (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    hiperbolicaButton_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on volverAInicioButton and none of its controls.
+function volverAInicioButton_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to volverAInicioButton (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    volverAInicioButton_Callback(hObject, eventdata, handles);
+end

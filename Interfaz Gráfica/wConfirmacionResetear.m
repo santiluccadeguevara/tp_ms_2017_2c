@@ -22,7 +22,7 @@ function varargout = wConfirmacionResetear(varargin)
 
 % Edit the above text to modify the response to help wConfirmacionResetear
 
-% Last Modified by GUIDE v2.5 30-Oct-2017 22:57:49
+% Last Modified by GUIDE v2.5 09-Nov-2017 20:36:12
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -111,8 +111,11 @@ IconData=questIconData;
 questIconMap(256,:) = get(handles.figure1, 'Color');
 IconCMap=questIconMap;
 
+
 % Make the GUI modal
 set(handles.figure1,'WindowStyle','modal')
+
+uicontrol(handles.btnCancelar);
 
 % UIWAIT makes wConfirmacionResetear wait for user response (see UIRESUME)
 uiwait(handles.figure1);
@@ -201,3 +204,31 @@ end
 if isequal(get(hObject,'CurrentKey'),'return')
     uiresume(handles.figure1);
 end    
+
+
+% --- Executes on key press with focus on btnResetear and none of its controls.
+function btnResetear_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnResetear (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnResetear_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on btnCancelar and none of its controls.
+function btnCancelar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnCancelar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnCancelar_Callback(hObject, eventdata, handles);
+end

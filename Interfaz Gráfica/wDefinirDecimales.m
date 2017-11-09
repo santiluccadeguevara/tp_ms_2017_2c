@@ -22,7 +22,7 @@ function varargout = wDefinirDecimales(varargin)
 
 % Edit the above text to modify the response to help wDefinirDecimales
 
-% Last Modified by GUIDE v2.5 30-Oct-2017 13:46:18
+% Last Modified by GUIDE v2.5 09-Nov-2017 20:20:00
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -147,3 +147,22 @@ function tbxDecimales_KeyPressFcn(hObject, eventdata, handles)
 %	Character: character interpretation of the key(s) that was pressed
 %	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
 % handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    uicontrol(handles.btnEstablecer);
+    btnEstablecer_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on btnEstablecer and none of its controls.
+function btnEstablecer_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnEstablecer (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnEstablecer_Callback(hObject, eventdata, handles);
+end

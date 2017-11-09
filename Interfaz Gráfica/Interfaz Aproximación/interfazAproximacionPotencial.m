@@ -22,7 +22,7 @@ function varargout = interfazAproximacionPotencial(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionPotencial
 
-% Last Modified by GUIDE v2.5 07-Nov-2017 11:06:45
+% Last Modified by GUIDE v2.5 09-Nov-2017 20:43:31
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -72,6 +72,7 @@ axes(handles.axes2);
 zoom on;
 [m , b] = aproximacionPotencial(handles.tabla.matriz');
 graficarAproximacionPotencial(m , b, handles.tabla.matriz');
+uicontrol(handles.pushbutton1);
 
 
 % --- Outputs from this function are returned to the command line.
@@ -141,3 +142,17 @@ function figure1_CloseRequestFcn(hObject, eventdata, handles)
 % Hint: delete(hObject) closes the figure
 delete(hObject);
 interfazAproximacionSeleccion(handles.tabla);
+
+
+% --- Executes on key press with focus on pushbutton1 and none of its controls.
+function pushbutton1_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to pushbutton1 (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    pushbutton1_Callback(hObject, eventdata, handles);
+end

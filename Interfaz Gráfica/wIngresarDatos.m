@@ -22,7 +22,7 @@ function varargout = wIngresarDatos(varargin)
 
 % Edit the above text to modify the response to help wIngresarDatos
 
-% Last Modified by GUIDE v2.5 09-Nov-2017 09:39:19
+% Last Modified by GUIDE v2.5 09-Nov-2017 20:51:31
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -236,6 +236,10 @@ else
     set(handles.tbValores, 'data', tabla.matriz);
     set(handles.txtEstadoIngresarDatos,'String','Par ordenado eliminado correctamente.');
     set(handles.tbxEditar,'String','');
+    set(handles.tbxNuevoXi,'String','');
+    set(handles.tbxNuevoFXi,'String','');
+    set(handles.btnActualizar,'Enable','off');
+    set(handles.btnLimpiar,'Enable','Off');
     handles.tabla=tabla;
 end
 
@@ -455,4 +459,149 @@ if isempty(tabla.matriz)
 else
     close all;
     wInterfazPrincipal(tabla);
+end
+
+
+% --- Executes on key press with focus on tbxFXi and none of its controls.
+function tbxFXi_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to tbxFXi (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    uicontrol(handles.btnRegistrar);
+    btnRegistrar_Callback(hObject, eventdata, handles);
+    uicontrol(handles.tbxXi);
+end
+
+
+% --- Executes on key press with focus on btnRegistrar and none of its controls.
+function btnRegistrar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnRegistrar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnRegistrar_Callback(hObject, eventdata, handles);
+    uicontrol(handles.tbxXi);
+end
+
+
+% --- Executes on key press with focus on btnEditar and none of its controls.
+function btnEditar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnEditar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnEditar_Callback(hObject, eventdata, handles);
+    uicontrol(handles.tbxNuevoXi);
+end
+
+
+% --- Executes on key press with focus on btnEliminar and none of its controls.
+function btnEliminar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnEliminar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnEliminar_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on btnResetear and none of its controls.
+function btnResetear_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnResetear (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnResetear_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on btnAproximar and none of its controls.
+function btnAproximar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnAproximar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnAproximar_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on btnGuardar and none of its controls.
+function btnGuardar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnGuardar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnGuardar_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on btnCancelar and none of its controls.
+function btnCancelar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnCancelar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnCancelar_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on btnActualizar and none of its controls.
+function btnActualizar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnActualizar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnActualizar_Callback(hObject, eventdata, handles);
+    uicontrol(handles.tbxEditar);
+end
+
+
+% --- Executes on key press with focus on btnLimpiar and none of its controls.
+function btnLimpiar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnLimpiar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnLimpiar_Callback(hObject, eventdata, handles);
 end

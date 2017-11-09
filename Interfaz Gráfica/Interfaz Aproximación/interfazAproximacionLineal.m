@@ -22,7 +22,7 @@ function varargout = interfazAproximacionLineal(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionLineal
 
-% Last Modified by GUIDE v2.5 07-Nov-2017 10:59:17
+% Last Modified by GUIDE v2.5 09-Nov-2017 20:44:06
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -70,6 +70,7 @@ axes(handles.graficoLineal);
 zoom on;
 [m , b] = aproximacionLineal(handles.tabla.matriz');
 graficarAproximacionLineal(m , b, handles.tabla.matriz');
+uicontrol(handles.pushbutton1);
 
 % UIWAIT makes interfazAproximacionLineal wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
@@ -153,3 +154,17 @@ function sumatoriasResultadosTable_DeleteFcn(hObject, eventdata, handles)
 % hObject    handle to sumatoriasResultadosTable (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on key press with focus on pushbutton1 and none of its controls.
+function pushbutton1_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to pushbutton1 (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    pushbutton1_Callback(hObject, eventdata, handles);
+end

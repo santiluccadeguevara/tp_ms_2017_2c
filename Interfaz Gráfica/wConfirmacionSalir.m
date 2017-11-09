@@ -22,7 +22,7 @@ function varargout = wConfirmacionSalir(varargin)
 
 % Edit the above text to modify the response to help wConfirmacionSalir
 
-% Last Modified by GUIDE v2.5 30-Oct-2017 22:29:49
+% Last Modified by GUIDE v2.5 09-Nov-2017 20:36:14
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -112,12 +112,14 @@ questIconMap(256,:) = get(handles.figure1, 'Color');
 IconCMap=questIconMap;
 
 
-
 % Make the GUI modal
 set(handles.figure1,'WindowStyle','modal')
 
+uicontrol(handles.btnCancelar);
+
 % UIWAIT makes wConfirmacionSalir wait for user response (see UIRESUME)
 uiwait(handles.figure1);
+
 
 % --- Outputs from this function are returned to the command line.
 function varargout = wConfirmacionSalir_OutputFcn(hObject, eventdata, handles)
@@ -211,3 +213,45 @@ function btnReiniciar_Callback(hObject, eventdata, handles)
 close all;
 wInterfazPrincipal;
 movegui(wInterfazPrincipal,'center');
+
+
+% --- Executes on key press with focus on btnReiniciar and none of its controls.
+function btnReiniciar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnReiniciar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnReiniciar_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on btnSalir and none of its controls.
+function btnSalir_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnSalir (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnSalir_Callback(hObject, eventdata, handles);
+end
+
+
+% --- Executes on key press with focus on btnCancelar and none of its controls.
+function btnCancelar_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to btnCancelar (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    btnCancelar_Callback(hObject, eventdata, handles);
+end

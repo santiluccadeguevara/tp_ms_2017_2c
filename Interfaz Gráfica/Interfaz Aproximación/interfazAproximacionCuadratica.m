@@ -22,7 +22,7 @@ function varargout = interfazAproximacionCuadratica(varargin)
 
 % Edit the above text to modify the response to help interfazAproximacionCuadratica
 
-% Last Modified by GUIDE v2.5 08-Nov-2017 13:47:28
+% Last Modified by GUIDE v2.5 09-Nov-2017 20:49:43
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -63,7 +63,6 @@ guidata(hObject, handles);
 % UIWAIT makes interfazAproximacionCuadratica wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
-movegui('center');
 set(handles.uitable1, 'Data', tablaCuadratica(handles.tabla.matriz'));
 sumatoria = sumatoriaCuadratica(handles.tabla.matriz');
 set(handles.uitable2, 'Data', sumatoria(2:10));
@@ -73,6 +72,7 @@ axes(handles.axes2);
 zoom on;
 [a , b, c] = aproximacionCuadratica(handles.tabla.matriz');
 graficarAproximacionCuadratica(a, b, c, handles.tabla.matriz');
+uicontrol(handles.pushbutton1);
 
 
 % --- Outputs from this function are returned to the command line.
@@ -132,7 +132,7 @@ function figure1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to figure1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
-
+movegui('center');
 
 % --- Executes when user attempts to close figure1.
 function figure1_CloseRequestFcn(hObject, eventdata, handles)
@@ -150,3 +150,17 @@ function uipanel2_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to uipanel2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
+
+
+% --- Executes on key press with focus on pushbutton1 and none of its controls.
+function pushbutton1_KeyPressFcn(hObject, eventdata, handles)
+% hObject    handle to pushbutton1 (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.UICONTROL)
+%	Key: name of the key that was pressed, in lower case
+%	Character: character interpretation of the key(s) that was pressed
+%	Modifier: name(s) of the modifier key(s) (i.e., control, shift) pressed
+% handles    structure with handles and user data (see GUIDATA)
+key = eventdata.Key;
+if(strcmp (key , 'return'))
+    pushbutton1_Callback(hObject, eventdata, handles);
+end
