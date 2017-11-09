@@ -16,7 +16,7 @@ function [a,b]=aproximacionHiperbolica(X)
         D=D+(X(1,i)*(inv(X(2,i))));
     end 
 
-    a=inv((n*D-A*B)/(n*C-A^2));
+    a=1./((n*D-A*B)/(n*C-A^2));
     b=((C*B-D*A)/(n*C-A^2))*a;
 
 end
