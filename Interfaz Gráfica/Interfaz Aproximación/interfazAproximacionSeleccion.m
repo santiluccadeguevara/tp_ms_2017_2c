@@ -64,10 +64,9 @@ guidata(hObject, handles);
 % UIWAIT makes interfazAproximacionSeleccion wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
-if handles.tabla.largo<3
+if handles.tabla.largo < 3
+    set(handles.parabolicaButton,'BackgroundColor',[0.65 0.65 0.65]);
     set(handles.parabolicaButton,'Enable','off');
-else
-    set(handles.parabolicaButton,'Enable','on');
 end
 
 
@@ -105,8 +104,10 @@ function parabolicaButton_Callback(hObject, eventdata, handles)
 % hObject    handle to parabolicaButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-close;
-interfazAproximacionCuadratica(handles.tabla);
+if(handles.tabla.largo >= 3)
+    close;
+    interfazAproximacionCuadratica(handles.tabla);
+end
 
 
 % --- Executes on button press in exponencialButton.
