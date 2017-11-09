@@ -64,6 +64,8 @@ guidata(hObject, handles);
 % UIWAIT makes wDefinirDecimales wait for user response (see UIRESUME)
 % uiwait(handles.figure2);
 
+uicontrol(handles.tbxDecimales);
+
 % --- Outputs from this function are returned to the command line.
 function varargout = wDefinirDecimales_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);

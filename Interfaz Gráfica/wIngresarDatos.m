@@ -22,7 +22,7 @@ function varargout = wIngresarDatos(varargin)
 
 % Edit the above text to modify the response to help wIngresarDatos
 
-% Last Modified by GUIDE v2.5 30-Oct-2017 23:09:32
+% Last Modified by GUIDE v2.5 09-Nov-2017 09:39:19
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -73,6 +73,8 @@ set(handles.txtDecimales,'String',num2str(tabla.decimales));
 if(~isempty(tabla.matriz))
     set(handles.tbValores,'Data',tabla.matriz);
 end
+
+uicontrol(handles.tbxXi);
 
 % --- Outputs from this function are returned to the command line.
 function varargout = wIngresarDatos_OutputFcn(hObject, eventdata, handles) 

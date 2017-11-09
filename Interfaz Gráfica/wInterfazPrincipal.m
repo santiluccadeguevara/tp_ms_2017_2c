@@ -2,7 +2,7 @@ function varargout = wInterfazPrincipal(varargin)
 % WINTERFAZPRINCIPAL MATLAB code for wInterfazPrincipal.fig
 %      WINTERFAZPRINCIPAL, by itself, creates a new WINTERFAZPRINCIPAL or raises the existing
 %      singleton*.
-%
+%s
 %      H = WINTERFAZPRINCIPAL returns the handle to a new WINTERFAZPRINCIPAL or the handle to
 %      the existing singleton*.
 %
