@@ -233,7 +233,8 @@ elseif ((contains(fila,','))||(contains(fila,'.')))
     set(handles.tbxEditar,'String','');
 else
     tabla=wConfirmacionEliminar(fila,tabla);
-    set(handles.tbValores, 'data', tabla.matriz);
+    tablaOptimizada=OptimizarParaTabla(tabla.matriz,tabla.decimales);
+    set(handles.tbValores, 'data', tablaOptimizada);
     set(handles.txtEstadoIngresarDatos,'String','Par ordenado eliminado correctamente.');
     set(handles.tbxEditar,'String','');
     set(handles.tbxNuevoXi,'String','');
@@ -326,7 +327,7 @@ elseif contains(xi,',')||contains(fXi,',')
     set(handles.txtEstadoIngresarDatos,'String','Entrada inválida. Recuerde que la separación decimal es el punto, no la coma. Intente nuevamente.')
     set(handles.tbxXi,'String','');
     set(handles.tbxFXi,'String','');
-elseif(~isempty(tabla.matriz)&&ismember(str2double(xi),tabla.matriz(:,1)))
+elseif(~isempty(tabla.matriz)&&ismember(EstablecerDecimales(xi,tabla),tabla.matriz(:,1)))
     set(handles.txtEstadoIngresarDatos,'String','Ya hay un par ordenado en la tabla para la abscisa ingresada. Intente de nuevo por favor.');
     set(handles.tbxXi,'String','');
     set(handles.tbxFXi,'String','');
@@ -336,7 +337,8 @@ else
     tabla.matriz(end+1,:)=[xi fXi];
     tabla.largo=tabla.largo+1;
     handles.tabla=tabla;
-    set(handles.tbValores, 'data', tabla.matriz);
+    tablaOptimizada=OptimizarParaTabla(tabla.matriz,tabla.decimales);
+    set(handles.tbValores, 'data', tablaOptimizada);
     set(handles.txtEstadoIngresarDatos,'String','Par ordenado ingresado correctamente.');
     set(handles.tbxXi,'String','');
     set(handles.tbxFXi,'String','');
@@ -398,7 +400,8 @@ else
     nuevoFXi=EstablecerDecimales(nuevoFXi,tabla);
     tabla.matriz(str2double(fila),:)=[nuevoXi nuevoFXi];
     handles.tabla=tabla;
-    set(handles.tbValores, 'data', tabla.matriz);
+    tablaOptimizada=OptimizarParaTabla(tabla.matriz,tabla.decimales);
+    set(handles.tbValores, 'data', tablaOptimizada);
     set(handles.txtEstadoIngresarDatos,'String','Par ordenado actualizado correctamente.');
     set(handles.tbxNuevoXi,'String','');
     set(handles.tbxNuevoXi,'Style','text');
