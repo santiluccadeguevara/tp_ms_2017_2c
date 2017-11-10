@@ -22,7 +22,7 @@ function varargout = wIngresarDatos(varargin)
 
 % Edit the above text to modify the response to help wIngresarDatos
 
-% Last Modified by GUIDE v2.5 09-Nov-2017 20:51:31
+% Last Modified by GUIDE v2.5 09-Nov-2017 21:04:59
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
