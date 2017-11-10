@@ -63,15 +63,15 @@ guidata(hObject, handles);
 % UIWAIT makes interfazAproximacionPotencial wait for user response (see UIRESUME)
 % uiwait(handles.figure1)
 
-set(handles.uitable1, 'Data', tablaPotencial(handles.tabla.matriz'));
+set(handles.uitable1, 'Data', OptimizarParaTabla(tablaPotencial(handles.tabla.matriz'),handles.tabla.decimales));
 sumatoria = sumatoriaPotencial(handles.tabla.matriz');
-set(handles.uitable2, 'Data', sumatoria(2:9));
+set(handles.uitable2, 'Data', OptimizarParaTabla(sumatoria(2:9),handles.tabla.decimales));
 set(handles.uitable2, 'RowName', {'S'});
-set(handles.uitable3, 'Data', ecuacionesPotenciales(handles.tabla.matriz'));
+set(handles.uitable3, 'Data', OptimizarParaTabla(ecuacionesPotenciales(handles.tabla.matriz'),handles.tabla.decimales));
 axes(handles.axes2);
 zoom on;
 [m , b] = aproximacionPotencial(handles.tabla.matriz');
-graficarAproximacionPotencial(m , b, handles.tabla.matriz');
+graficarAproximacionPotencial(m , b, handles.tabla.matriz', handles.tabla.decimales);
 uicontrol(handles.pushbutton1);
 
 

@@ -1,4 +1,4 @@
-function graficarAproximacionCuadratica(a, b, c, X)
+function graficarAproximacionCuadratica(a, b, c, X, decimales)
 
     for i=1:length(X(1,:)) 
         hold on; 
@@ -18,20 +18,20 @@ function graficarAproximacionCuadratica(a, b, c, X)
     xlim([e1 e2]);
     ylim([e3 e4]);
     
-    title(mostrarFuncion(a, b, c), 'interpreter', 'latex');
+    title(mostrarFuncion(a, b, c, decimales), 'interpreter', 'latex');
     
-    xlabel(mostrarError(a, b, c, X), 'interpreter', 'latex');
+    xlabel(mostrarError(a, b, c, X, decimales), 'interpreter', 'latex');
     
 end
 
-function [funcion] = mostrarFuncion(a, b, c) 
+function [funcion] = mostrarFuncion(a, b, c, decimales) 
 
-    funcion = ['Polinomio aproximante: $' num2str(a) 'x^{2} + ' num2str(b) 'x + ' num2str(c) '$'];
+    funcion = ['Polinomio aproximante: $' OptimizarParaLabel(a,decimales) 'x^{2} + ' OptimizarParaLabel(b,decimales) 'x + ' OptimizarParaLabel(c,decimales) '$'];
 
 end
 
-function [error] = mostrarError(a, b, c, X)
+function [error] = mostrarError(a, b, c, X, decimales)
 
-    error = ['Error: ' num2str(calcularErrorCuadratico([a, b, c], X))];
+    error = ['Error: ' OptimizarParaLabel(calcularErrorCuadratico([a, b, c], X),decimales)];
 
 end

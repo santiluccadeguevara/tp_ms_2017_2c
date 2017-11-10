@@ -1,4 +1,4 @@
-function graficarAproximacionPotencial(a, b, X)
+function graficarAproximacionPotencial(a, b, X, decimales)
 
     for i=1:length(X(1,:))
         hold on; 
@@ -17,20 +17,20 @@ function graficarAproximacionPotencial(a, b, X)
     fplot(@(x) b*(x).^a ,'m')
     xlim([e1 e2]);
     ylim([e3 e4]);
-    title(mostrarFuncion(a, b), 'interpreter', 'latex');
+    title(mostrarFuncion(a, b, decimales), 'interpreter', 'latex');
     
-    xlabel(mostrarError(a, b, X), 'interpreter', 'latex');
+    xlabel(mostrarError(a, b, X, decimales), 'interpreter', 'latex');
     
 end
 
-function [funcion] = mostrarFuncion(a, b) 
+function [funcion] = mostrarFuncion(a, b, decimales) 
 
-    funcion = ['Polinomio aproximante: $' num2str(b) 'x^{' num2str(a) '}$'];
+    funcion = ['Polinomio aproximante: $' OptimizarParaLabel(b, decimales) 'x^{' OptimizarParaLabel(a, decimales) '}$'];
 
 end
 
-function [error] = mostrarError(a, b, X)
+function [error] = mostrarError(a, b, X, decimales)
 
-    error = ['Error: ' num2str(calcularErrorPotencial([a, b], X))];
+    error = ['Error: ' OptimizarParaLabel(calcularErrorPotencial([a, b], X), decimales)];
 
 end

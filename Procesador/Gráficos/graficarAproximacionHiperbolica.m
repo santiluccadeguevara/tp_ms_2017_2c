@@ -1,4 +1,4 @@
-function graficarAproximacionHiperbolica(a, b, X)
+function graficarAproximacionHiperbolica(a, b, X, decimales)
 
     for i=1:length(X(1,:))
         hold on; 
@@ -18,20 +18,20 @@ function graficarAproximacionHiperbolica(a, b, X)
     xlim([e1 e2]);
     ylim([e3 e4]);
     
-    title(mostrarFuncion(a, b), 'interpreter', 'latex');
+    title(mostrarFuncion(a, b, decimales), 'interpreter', 'latex');
     
-    xlabel(mostrarError(a, b, X), 'interpreter', 'latex');
+    xlabel(mostrarError(a, b, X, decimales), 'interpreter', 'latex');
     
 end
 
-function [funcion] = mostrarFuncion(a, b) 
+function [funcion] = mostrarFuncion(a, b, decimales) 
 
-    funcion = ['Polinomio aproximante: $$\displaystyle\frac{' num2str(a) '}{x + ' num2str(b) '}$'];
+    funcion = ['Polinomio aproximante: $$\displaystyle\frac{' OptimizarParaLabel(a, decimales) '}{x + ' OptimizarParaLabel(b, decimales) '}$'];
 
 end
 
-function [error] = mostrarError(a, b, X)
+function [error] = mostrarError(a, b, X, decimales)
 
-    error = ['Error: ' num2str(calcularErrorHiperbolica([a, b], X))];
+    error = ['Error: ' OptimizarParaLabel(calcularErrorHiperbolica([a, b], X), decimales)];
 
 end

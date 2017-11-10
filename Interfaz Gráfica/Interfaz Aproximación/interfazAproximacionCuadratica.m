@@ -63,15 +63,15 @@ guidata(hObject, handles);
 % UIWAIT makes interfazAproximacionCuadratica wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
-set(handles.uitable1, 'Data', tablaCuadratica(handles.tabla.matriz'));
+set(handles.uitable1, 'Data', OptimizarParaTabla(tablaCuadratica(handles.tabla.matriz'),handles.tabla.decimales));
 sumatoria = sumatoriaCuadratica(handles.tabla.matriz');
-set(handles.uitable2, 'Data', sumatoria(2:10));
+set(handles.uitable2, 'Data', OptimizarParaTabla(sumatoria(2:10),handles.tabla.decimales));
 set(handles.uitable2, 'RowName', {'S'});
-set(handles.uitable3, 'Data', ecuacionesCuadraticas(handles.tabla.matriz'));
+set(handles.uitable3, 'Data', OptimizarParaTabla(ecuacionesCuadraticas(handles.tabla.matriz'),handles.tabla.decimales));
 axes(handles.axes2);
 zoom on;
 [a , b, c] = aproximacionCuadratica(handles.tabla.matriz');
-graficarAproximacionCuadratica(a, b, c, handles.tabla.matriz');
+graficarAproximacionCuadratica(a, b, c, handles.tabla.matriz',handles.tabla.decimales);
 uicontrol(handles.pushbutton1);
 
 

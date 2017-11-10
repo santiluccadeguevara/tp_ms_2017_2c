@@ -1,4 +1,4 @@
-function graficarAproximacionLineal(m, b, X)
+function graficarAproximacionLineal(m, b, X, decimales)
 
     for i=1:length(X(1,:))
         hold on; 
@@ -23,20 +23,20 @@ function graficarAproximacionLineal(m, b, X)
     %aproximante: con los dos últimos parámetros de la función title y
     %xlabel, se asigna el formato cheto a las funciones.
     
-    title(mostrarFuncion(m, b), 'interpreter', 'latex');
+    title(mostrarFuncion(m, b, decimales), 'interpreter', 'latex');
     
-    xlabel(mostrarError(m, b, X), 'interpreter', 'latex');
+    xlabel(mostrarError(m, b, X, decimales), 'interpreter', 'latex');
     
 end
 
-function [funcion] = mostrarFuncion(m, b) 
+function [funcion] = mostrarFuncion(m, b, decimales) 
 
-    funcion = ['Polinomio aproximante: $' num2str(m) 'x + ' num2str(b) '$'];
+    funcion = ['Polinomio aproximante: $' OptimizarParaLabel(m, decimales) 'x + ' OptimizarParaLabel(b,decimales) '$'];
 
 end
 
-function [error] = mostrarError(m, b, X)
+function [error] = mostrarError(m, b, X, decimales)
 
-    error = ['Error: ' num2str(calcularErrorLineal([m, b], X))];
+    error = ['Error: ' OptimizarParaLabel(calcularErrorLineal([m, b], X),decimales)];
 
 end

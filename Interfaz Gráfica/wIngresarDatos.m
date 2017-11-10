@@ -71,7 +71,7 @@ tabla=handles.tabla;
 set(handles.txtDecimales,'String',num2str(tabla.decimales));
 
 if(~isempty(tabla.matriz))
-    set(handles.tbValores,'Data',tabla.matriz);
+    set(handles.tbValores,'Data',OptimizarParaTabla(tabla.matriz,tabla.decimales));
 end
 
 uicontrol(handles.tbxXi);

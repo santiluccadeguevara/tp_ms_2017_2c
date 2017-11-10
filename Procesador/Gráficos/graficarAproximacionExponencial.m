@@ -1,4 +1,4 @@
-function graficarAproximacionExponencial(a, b, X)
+function graficarAproximacionExponencial(a, b, X, decimales)
 
     for i=1:length(X(1,:))
         hold on; 
@@ -18,20 +18,20 @@ function graficarAproximacionExponencial(a, b, X)
     xlim([e1 e2]);
     ylim([e3 e4]);
     
-    title(mostrarFuncion(a, b), 'interpreter', 'latex');
+    title(mostrarFuncion(a, b, decimales), 'interpreter', 'latex');
     
-    xlabel(mostrarError(a, b, X), 'interpreter', 'latex');
+    xlabel(mostrarError(a, b, X, decimales), 'interpreter', 'latex');
     
 end
 
-function [funcion] = mostrarFuncion(a, b) 
+function [funcion] = mostrarFuncion(a, b, decimales) 
 
-    funcion = ['Polinomio aproximante: $' num2str(b) 'e^{' num2str(a) '}$'];
+    funcion = ['Polinomio aproximante: $' OptimizarParaLabel(b, decimales) 'e^{' OptimizarParaLabel(a, decimales) '}$'];
 
 end
 
-function [error] = mostrarError(a, b, X)
+function [error] = mostrarError(a, b, X, decimales)
 
-    error = ['Error: ' num2str(calcularErrorExponencial([a, b], X))];
+    error = ['Error: ' OptimizarParaLabel(calcularErrorExponencial([a, b], X),decimales)];
 
 end

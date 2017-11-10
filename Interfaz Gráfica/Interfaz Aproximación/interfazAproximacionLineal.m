@@ -61,15 +61,15 @@ handles.output = hObject;
 % Update handles structure
 guidata(hObject, handles);
 
-set(handles.sumatoriasTable, 'Data', tablaLineal(handles.tabla.matriz'));
+set(handles.sumatoriasTable, 'Data', OptimizarParaTabla(tablaLineal(handles.tabla.matriz'),handles.tabla.decimales));
 sumatoria = sumatoriaLineal(handles.tabla.matriz');
-set(handles.sumatoriasResultadosTable, 'Data', sumatoria(2:7));
+set(handles.sumatoriasResultadosTable, 'Data', OptimizarParaTabla(sumatoria(2:7),handles.tabla.decimales));
 set(handles.sumatoriasResultadosTable, 'RowName', {'S'});
-set(handles.ecuacionesTable, 'Data', ecuacionesLineales(handles.tabla.matriz'));
+set(handles.ecuacionesTable, 'Data', OptimizarParaTabla(ecuacionesLineales(handles.tabla.matriz'),handles.tabla.decimales));
 axes(handles.graficoLineal);
 zoom on;
 [m , b] = aproximacionLineal(handles.tabla.matriz');
-graficarAproximacionLineal(m , b, handles.tabla.matriz');
+graficarAproximacionLineal(m , b, handles.tabla.matriz', handles.tabla.decimales);
 uicontrol(handles.pushbutton1);
 
 % UIWAIT makes interfazAproximacionLineal wait for user response (see UIRESUME)

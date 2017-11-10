@@ -63,15 +63,15 @@ guidata(hObject, handles);
 % UIWAIT makes interfazAproximacionExponencial wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
-set(handles.uitable1, 'Data', tablaExponencial(handles.tabla.matriz'));
+set(handles.uitable1, 'Data', OptimizarParaTabla(tablaExponencial(handles.tabla.matriz'),handles.tabla.decimales));
 sumatoria = sumatoriaExponencial(handles.tabla.matriz');
-set(handles.uitable2, 'Data', sumatoria(2:8));
+set(handles.uitable2, 'Data', OptimizarParaTabla(sumatoria(2:8),handles.tabla.decimales));
 set(handles.uitable2, 'RowName', {'S'});
-set(handles.uitable3, 'Data', ecuacionesExponenciales(handles.tabla.matriz'));
+set(handles.uitable3, 'Data', OptimizarParaTabla(ecuacionesExponenciales(handles.tabla.matriz'),handles.tabla.decimales));
 axes(handles.axes2);
 zoom on;
 [m , b] = aproximacionExponencial(handles.tabla.matriz');
-graficarAproximacionExponencial(m, b, handles.tabla.matriz');
+graficarAproximacionExponencial(m, b, handles.tabla.matriz', handles.tabla.decimales);
 uicontrol(handles.pushbutton1);
 
 % --- Outputs from this function are returned to the command line.

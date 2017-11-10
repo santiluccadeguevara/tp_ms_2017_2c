@@ -63,15 +63,15 @@ guidata(hObject, handles);
 % UIWAIT makes interfazAproximacionHiperbolica wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
-set(handles.uitable1, 'Data', tablaHiperbolica(handles.tabla.matriz'));
+set(handles.uitable1, 'Data', OptimizarParaTabla(tablaHiperbolica(handles.tabla.matriz'),handles.tabla.decimales));
 sumatoria = sumatoriaHiperbolica(handles.tabla.matriz');
-set(handles.uitable2, 'Data', sumatoria(2:8));
+set(handles.uitable2, 'Data', OptimizarParaTabla(sumatoria(2:8),handles.tabla.decimales));
 set(handles.uitable2, 'RowName', {'S'});
-set(handles.uitable3, 'Data', ecuacionesHiperbolicas(handles.tabla.matriz'));
+set(handles.uitable3, 'Data', OptimizarParaTabla(ecuacionesHiperbolicas(handles.tabla.matriz'),handles.tabla.decimales));
 axes(handles.axes2);
 zoom on;
 [m , b] = aproximacionHiperbolica(handles.tabla.matriz');
-graficarAproximacionHiperbolica(m, b, handles.tabla.matriz');
+graficarAproximacionHiperbolica(m, b, handles.tabla.matriz', handles.tabla.decimales);
 uicontrol(handles.pushbutton1);
 
 

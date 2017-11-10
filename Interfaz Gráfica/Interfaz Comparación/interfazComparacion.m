@@ -65,9 +65,9 @@ guidata(hObject, handles);
 
 [tabla, resultados] = dameLaTabla(handles.tabla.matriz');
 
-set(handles.uitable1, 'Data', tabla);
+set(handles.uitable1, 'Data', OptimizarParaTabla(tabla,handles.tabla.decimales));
 
-set(handles.uitable3, 'Data', resultados);
+set(handles.uitable3, 'Data', OptimizarParaTabla(resultados,handles.tabla.decimales));
 
 [valor, indice] = obtenerMejorAproximacion(handles.tabla.matriz');
 
@@ -79,23 +79,23 @@ switch indice
     case 1
         set(handles.text7, 'String', 'Aproximación lineal');
         [m , b] = aproximacionLineal(handles.tabla.matriz');
-        graficarAproximacionLineal(m, b, handles.tabla.matriz');
+        graficarAproximacionLineal(m, b, handles.tabla.matriz', handles.tabla.decimales);
     case 2
         set(handles.text7, 'String', 'Aproximación parabólica');
         [a , b, c] = aproximacionCuadratica(handles.tabla.matriz');
-        graficarAproximacionCuadratica(a, b, c, handles.tabla.matriz');
+        graficarAproximacionCuadratica(a, b, c, handles.tabla.matriz', handles.tabla.decimales);
     case 3
         set(handles.text7, 'String', 'Aproximación exponencial');
         [a , b] = aproximacionExponencial(handles.tabla.matriz');
-        graficarAproximacionExponencial(a, b, handles.tabla.matriz');
+        graficarAproximacionExponencial(a, b, handles.tabla.matriz', handles.tabla.decimales);
     case 4
         set(handles.text7, 'String', 'Aproximación potencial');
         [a , b] = aproximacionPotencial(handles.tabla.matriz');
-        graficarAproximacionPotencial(a, b, handles.tabla.matriz');
+        graficarAproximacionPotencial(a, b, handles.tabla.matriz', handles.tabla.decimales);
     case 5
         set(handles.text7, 'String', 'Aproximación hiperbólica');
         [a , b] = aproximacionHiperbolica(handles.tabla.matriz');
-        graficarAproximacionHiperbolica(a, b, handles.tabla.matriz');
+        graficarAproximacionHiperbolica(a, b, handles.tabla.matriz', handles.tabla.decimales);
     otherwise
         set(handles.text7, 'String', 'Indeterminado');
 end
